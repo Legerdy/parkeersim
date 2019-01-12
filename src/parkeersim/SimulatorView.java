@@ -9,6 +9,7 @@ public class SimulatorView extends JFrame {
     private int numberOfRows;
     private int numberOfPlaces;
     private int numberOfOpenSpots;
+    private boolean isPaused = true;
     private Car[][][] cars;
 
     public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
@@ -23,9 +24,10 @@ public class SimulatorView extends JFrame {
         Container contentPane = getContentPane();
         contentPane.add(carParkView, BorderLayout.CENTER);
         pack();
-        setVisible(true);
 
-        updateView();
+        carParkView.drawGUI();
+        carParkView.updateView();
+        setVisible(true);
     }
 
     public void updateView() {
@@ -126,6 +128,10 @@ public class SimulatorView extends JFrame {
         }
     }
 
+    public boolean isPaused(){
+        return isPaused;
+    }
+
     private boolean locationIsValid(Location location) {
         int floor = location.getFloor();
         int row = location.getRow();
@@ -152,7 +158,7 @@ public class SimulatorView extends JFrame {
          * Overridden. Tell the GUI manager how big we would like to be.
          */
         public Dimension getPreferredSize() {
-            return new Dimension(800, 500);
+            return new Dimension(900, 500);
         }
     
         /**
@@ -172,6 +178,15 @@ public class SimulatorView extends JFrame {
                 // Rescale the previous image.
                 g.drawImage(carParkImage, 0, 0, currentSize.width, currentSize.height, null);
             }
+        }
+
+        public void drawGUI(){
+            JButton start = new JButton("start");
+            start.addActionListener( (e) -> isPaused = false);
+            add(start);
+            JButton stop = new JButton("stop");
+            stop.addActionListener( (e) -> isPaused = true);
+            add(stop);
         }
     
         public void updateView() {
