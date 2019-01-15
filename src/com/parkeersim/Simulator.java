@@ -39,8 +39,8 @@ public class Simulator {
         entrancePassQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
-        simulatorView = new SimulatorView(1, 16, 40);
-        simulatorView.setSimulator(this);
+        simulatorView = new SimulatorView(1, 16, 40, this);
+        //simulatorView.setSimulator(this);
     }
 
     public void run() {

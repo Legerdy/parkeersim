@@ -4,7 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SimulatorView extends JFrame {
+    private Simulator simulator;
     private CarParkView carParkView;
+
     private int numberOfFloors;
     private int numberOfRows;
     private int numberOfPlaces;
@@ -12,23 +14,21 @@ public class SimulatorView extends JFrame {
     private boolean isPaused = true;
     private Car[][][] cars;
 
-    private Simulator simulator;
 
-    public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
+    public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces, Simulator sim) {
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
         this.numberOfPlaces = numberOfPlaces;
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
+        this.simulator = sim;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         
-        carParkView = new CarParkView();
+        carParkView = new CarParkView(this);
 
         Container contentPane = getContentPane();
         contentPane.add(carParkView, BorderLayout.CENTER);
         pack();
 
-        carParkView.setSimulatorView(this);
-        carParkView.drawGUI();
         carParkView.updateView();
         setVisible(true);
     }

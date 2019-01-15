@@ -6,6 +6,8 @@ import java.awt.*;
 
 public class CarParkView extends JPanel {
 
+    private GuiView guiView;
+
     private Dimension size;
     private Image carParkImage;
     private SimulatorView simulatorview;
@@ -13,8 +15,12 @@ public class CarParkView extends JPanel {
     /**
      * Constructor for objects of class CarPark
      */
-    public CarParkView() {
+    public CarParkView(SimulatorView simview) {
         size = new Dimension(0, 0);
+        this.simulatorview = simview;
+
+        guiView = new GuiView(simview);
+        add(guiView);
     }
 
     public void setSimulatorView(SimulatorView simview){
@@ -45,20 +51,6 @@ public class CarParkView extends JPanel {
             // Rescale the previous image.
             g.drawImage(carParkImage, 0, 0, currentSize.width, currentSize.height, null);
         }
-    }
-
-    public void drawGUI(){
-        JButton start = new JButton("start");
-        start.addActionListener( (e) -> simulatorview.setPause(false));
-        add(start);
-        JButton stop = new JButton("stop");
-        stop.addActionListener( (e) -> simulatorview.setPause(true));
-        add(stop);
-
-        //int time = simulator.getTime();
-        //String timeString = Integer.toString(time);
-        //JLabel timeLabel = new JLabel(timeString);
-        //add(timeLabel);
     }
 
     public void updateView() {
