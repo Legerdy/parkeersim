@@ -1,5 +1,7 @@
 package com.parkeersim;
 
+import com.parkeersim.views.SimulatorView;
+
 import java.util.Random;
 
 public class Simulator {

@@ -1,4 +1,4 @@
-package com.parkeersim;
+package com.parkeersim.views;
 
 import javax.swing.*;
 
