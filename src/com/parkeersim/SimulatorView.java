@@ -1,4 +1,4 @@
-package parkeersim;
+package com.parkeersim;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +11,8 @@ public class SimulatorView extends JFrame {
     private int numberOfOpenSpots;
     private boolean isPaused = true;
     private Car[][][] cars;
+
+    private Simulator simulator;
 
     public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         this.numberOfFloors = numberOfFloors;
@@ -28,6 +30,10 @@ public class SimulatorView extends JFrame {
         carParkView.drawGUI();
         carParkView.updateView();
         setVisible(true);
+    }
+
+    public void setSimulator(Simulator sim){
+        this.simulator = sim;
     }
 
     public void updateView() {
@@ -187,6 +193,11 @@ public class SimulatorView extends JFrame {
             JButton stop = new JButton("stop");
             stop.addActionListener( (e) -> isPaused = true);
             add(stop);
+
+            //int time = simulator.getTime();
+            //String timeString = Integer.toString(time);
+            //JLabel timeLabel = new JLabel(timeString);
+            //add(timeLabel);
         }
     
         public void updateView() {

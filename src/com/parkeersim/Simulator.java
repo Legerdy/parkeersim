@@ -1,4 +1,4 @@
-package parkeersim;
+package com.parkeersim;
 
 import java.util.Random;
 
@@ -40,6 +40,7 @@ public class Simulator {
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
         simulatorView = new SimulatorView(1, 16, 40);
+        simulatorView.setSimulator(this);
     }
 
     public void run() {
@@ -67,6 +68,15 @@ public class Simulator {
             e.printStackTrace();
         }
     	handleEntrance();
+    }
+
+    public int getTime(){
+        //int[] x = new int[2];
+        //x[0] = minute;
+        //x[1] = hour;
+        //x[2] = day;
+
+        return minute;
     }
 
     private void advanceTime(){

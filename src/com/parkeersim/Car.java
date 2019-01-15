@@ -1,4 +1,4 @@
-package parkeersim;
+package com.parkeersim;
 
 import java.awt.*;
 
