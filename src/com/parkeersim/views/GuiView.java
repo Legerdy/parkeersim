@@ -8,17 +8,12 @@ public class GuiView extends JPanel {
     public GuiView(SimulatorView simview){
         this.simulatorview = simview;
 
-        System.out.println("test");
         JButton start = new JButton("start");
         start.addActionListener( (e) -> simulatorview.setPause(false));
         add(start);
         JButton stop = new JButton("stop");
         stop.addActionListener( (e) -> simulatorview.setPause(true));
         add(stop);
-    }
-
-    public void drawGUI(){
-
 
         //int time = simulator.getTime();
         //String timeString = Integer.toString(time);
