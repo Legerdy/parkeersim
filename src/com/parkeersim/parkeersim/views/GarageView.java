@@ -6,6 +6,7 @@ import com.parkeersim.mvc.BaseModel;
 import com.parkeersim.mvc.BaseView;
 import com.parkeersim.parkeersim.models.GarageModel;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class GarageView extends BaseView{
@@ -28,6 +29,7 @@ public class GarageView extends BaseView{
      * Overriden. The car park view component needs to be redisplayed. Copy the
      * internal image to screen.
      */
+
     public void paintComponent(Graphics g) {
         if (carParkImage == null) {
             return;
@@ -58,9 +60,6 @@ public class GarageView extends BaseView{
             size = getSize();
             carParkImage = createImage(size.width, size.height);
         }
-        //alles met een image geeft een nullpointer?
-        Image testImage = createImage(500, 500);
-        System.out.println(testImage.toString());
         Graphics graphics = carParkImage.getGraphics();
         for(int floor = 0; floor < garagemodel.getNumberOfFloors(); floor++) {
             for(int row = 0; row < garagemodel.getNumberOfRows(); row++) {

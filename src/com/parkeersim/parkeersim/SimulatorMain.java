@@ -3,6 +3,7 @@ package com.parkeersim.parkeersim;
 import com.parkeersim.parkeersim.views.SimulatorView;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class SimulatorMain {
     public static void main(String[] args){
@@ -19,5 +20,7 @@ public class SimulatorMain {
         frame.setContentPane(view);
         frame.pack();
         frame.setVisible(true);
+        //garageView needs to be notified after it has been rendered, else getGraphics() will always return null
+        view.notifyGarageView();
     }
 }

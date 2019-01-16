@@ -15,9 +15,14 @@ public class SimulatorView extends BaseView {
         garageview = new GarageView();
         garagemodel = new GarageModel(3, 4, 50);
         garagemodel.addView(garageview);
-        garagemodel.notifyView();
 
         add(garageview);
+        setVisible(true);
+        //garagemodel.notifyView();
+    }
+
+    public void notifyGarageView(){
+        garagemodel.notifyView();
     }
 
     @Override
