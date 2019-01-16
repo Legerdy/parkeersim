@@ -1,7 +1,7 @@
 package com.parkeersim.mvc;
 
 public abstract class BaseController {
-    private BaseModel model;
+    protected final BaseModel model;
 
     /**
      * Constructor that attaches model to the controller
@@ -26,7 +26,7 @@ public abstract class BaseController {
      * Override to handle events
      * @param view
      * @param event_id
-     * @return 
+     * @return
      */
     public abstract boolean event(BaseView view, int event_id);
 }
