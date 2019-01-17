@@ -11,9 +11,9 @@ public abstract class BaseView extends JPanel {
      */
     public void setController(BaseController controller){
         if(this.controller != null){
-            this.controller = controller;
+            throw new IllegalStateException("The view already has a controller");
         } else {
-            //throw exception the view already has a controller
+            this.controller = controller;
         }
     }
 
@@ -23,9 +23,9 @@ public abstract class BaseView extends JPanel {
      */
     public void notifyController(int event_id){
         if (this.controller != null){
-            //notify
+            this.controller.notify(this, event_id);
         } else {
-            //throw exception the view has no controller
+            throw new IllegalStateException("The view has no controller");
         }
     }
 

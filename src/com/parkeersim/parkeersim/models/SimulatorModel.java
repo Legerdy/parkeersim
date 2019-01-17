@@ -10,6 +10,8 @@ public class SimulatorModel extends BaseModel {
     private static final String AD_HOC = "1";
     private static final String PASS = "2";
 
+    private boolean isPaused = false;
+
     private GarageModel garagemodel;
 
     private CarQueue entranceCarQueue;
@@ -48,8 +50,12 @@ public class SimulatorModel extends BaseModel {
 
     public void run() {
         while (true){
-           tick();
+            tick();
         }
+    }
+
+    public void setPause(boolean state){
+        isPaused = state;
     }
 
     private void tick() {

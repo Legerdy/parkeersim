@@ -13,10 +13,10 @@ public class GuiController extends BaseController {
     @Override
     public boolean event(BaseView view, int event_id){
         GuiModel guimodel = (GuiModel)model;
-        //if (event_id==een id){
-        //  guimodel.doeiets();
-        //  return true;
-        // }
+        if (event_id==1){
+           guimodel.pauseSim();
+           return true;
+        }
         return false;
     }
 }
