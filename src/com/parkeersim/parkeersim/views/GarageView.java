@@ -15,7 +15,6 @@ public class GarageView extends BaseView{
 
     public GarageView(){
         size = new Dimension(500, 500);
-        carParkImage = createImage(size.width, size.height);
     }
 
     /**
@@ -46,13 +45,17 @@ public class GarageView extends BaseView{
     }
 
     /**
-     * Draws parking spots depending on the amount of floors, rows and places
+     * Overrides the BaseView update method
+     * @param model
      */
     @Override
     public void update(BaseModel model){
         updateView(model);
     }
 
+    /**
+     * Draws parking spots depending on the amount of floors, rows and places
+     */
     public void updateView(BaseModel model) {
         GarageModel garagemodel = (GarageModel) model;
         // Create a new car park image if the size has changed.

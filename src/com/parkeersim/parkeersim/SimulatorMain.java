@@ -1,10 +1,8 @@
 package com.parkeersim.parkeersim;
 
-import com.parkeersim.parkeersim.models.SimulatorModel;
 import com.parkeersim.parkeersim.views.SimulatorView;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class SimulatorMain {
     public static void main(String[] args){
@@ -12,11 +10,8 @@ public class SimulatorMain {
         frame.setTitle("Parking Simulator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //maak benodigde controllers models en views aan
+        //Make simulatorview and add to the frame
         SimulatorView view = new SimulatorView();
-
-        //setcontroller voor views
-        //addview voor models
 
         frame.setContentPane(view);
         frame.pack();
