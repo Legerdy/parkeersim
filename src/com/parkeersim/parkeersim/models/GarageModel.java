@@ -116,6 +116,10 @@ public class GarageModel extends BaseModel {
         }
     }
 
+    public void updateView(){
+        notifyView();
+    }
+
     private boolean locationIsValid(Location location) {
         int floor = location.getFloor();
         int row = location.getRow();

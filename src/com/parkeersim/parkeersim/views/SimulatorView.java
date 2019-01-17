@@ -3,6 +3,7 @@ package com.parkeersim.parkeersim.views;
 import com.parkeersim.mvc.BaseModel;
 import com.parkeersim.mvc.BaseView;
 import com.parkeersim.parkeersim.models.GarageModel;
+import com.parkeersim.parkeersim.models.SimulatorModel;
 
 public class SimulatorView extends BaseView {
     private GarageView garageview;
@@ -18,11 +19,12 @@ public class SimulatorView extends BaseView {
 
         add(garageview);
         setVisible(true);
-        //garagemodel.notifyView();
     }
 
     public void notifyGarageView(){
         garagemodel.notifyView();
+        SimulatorModel simulator = new SimulatorModel(garagemodel);
+        simulator.run();
     }
 
     @Override
