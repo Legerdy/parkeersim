@@ -2,7 +2,6 @@ package com.parkeersim.parkeersim.models;
 
 import com.parkeersim.*;
 import com.parkeersim.mvc.BaseModel;
-import com.parkeersim.views.SimulatorView;
 
 import java.util.Random;
 
@@ -49,13 +48,22 @@ public class SimulatorModel extends BaseModel {
     }
 
     public void run() {
-        while (true){
-            tick();
-        }
+        Thread run = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(true){
+                    if (isPaused) break;
+                    System.out.println(isPaused);
+                    tick();
+                }
+            }
+        });
+        run.start();
     }
 
     public void setPause(boolean state){
         isPaused = state;
+        System.out.println(isPaused);
     }
 
     private void tick() {

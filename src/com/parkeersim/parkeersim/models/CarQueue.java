@@ -1,4 +1,4 @@
-package com.parkeersim;
+package com.parkeersim.parkeersim.models;
 import java.util.LinkedList;
 import java.util.Queue;
 

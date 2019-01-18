@@ -1,7 +1,7 @@
 package com.parkeersim.views;
 
-import com.parkeersim.Car;
-import com.parkeersim.Location;
+import com.parkeersim.parkeersim.models.Car;
+import com.parkeersim.parkeersim.models.Location;
 import com.parkeersim.Simulator;
 
 import javax.swing.*;

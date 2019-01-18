@@ -1,12 +1,11 @@
 package com.parkeersim.parkeersim.views;
 
-import com.parkeersim.Car;
-import com.parkeersim.Location;
+import com.parkeersim.parkeersim.models.Car;
+import com.parkeersim.parkeersim.models.Location;
 import com.parkeersim.mvc.BaseModel;
 import com.parkeersim.mvc.BaseView;
 import com.parkeersim.parkeersim.models.GarageModel;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class GarageView extends BaseView{

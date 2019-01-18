@@ -1,8 +1,5 @@
 package com.parkeersim.parkeersim.models;
 
-import com.parkeersim.Car;
-import com.parkeersim.Location;
-import com.parkeersim.Simulator;
 import com.parkeersim.mvc.BaseModel;
 
 public class GarageModel extends BaseModel {
