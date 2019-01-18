@@ -1,6 +1,5 @@
 package com.parkeersim.parkeersim.models;
 
-import com.parkeersim.*;
 import com.parkeersim.mvc.BaseModel;
 
 import java.util.Random;
@@ -24,7 +23,7 @@ public class SimulatorModel extends BaseModel {
 
     private int tickPause = 100;
 
-    int weekDayArrivals= 100; // average number of arriving cars per hour
+    int weekDayArrivals= 1000; // average number of arriving cars per hour
     int weekendArrivals = 200; // average number of arriving cars per hour
     int weekDayPassArrivals= 50; // average number of arriving cars per hour
     int weekendPassArrivals = 5; // average number of arriving cars per hour
@@ -33,37 +32,33 @@ public class SimulatorModel extends BaseModel {
     int paymentSpeed = 7; // number of cars that can pay per minute
     int exitSpeed = 5; // number of cars that can leave per minute
 
-    public static void main(String[] args) {
-        Simulator sim = new Simulator();
-        sim.run();
-    }
-
     public SimulatorModel(GarageModel garagemodel) {
         entranceCarQueue = new CarQueue();
         entrancePassQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
-        //simulatorView.setSimulator(this);
         this.garagemodel = garagemodel;
     }
 
     public void run() {
-        Thread run = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(true){
-                    if (isPaused) break;
-                    System.out.println(isPaused);
+        Thread thread = new Thread(() -> {
+            while (true){
+                if(isPaused){
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } else {
                     tick();
                 }
             }
         });
-        run.start();
+        thread.start();
     }
 
     public void setPause(boolean state){
         isPaused = state;
-        System.out.println(isPaused);
     }
 
     private void tick() {
@@ -77,15 +72,6 @@ public class SimulatorModel extends BaseModel {
             e.printStackTrace();
         }
         handleEntrance();
-    }
-
-    public int getTime(){
-        //int[] x = new int[2];
-        //x[0] = minute;
-        //x[1] = hour;
-        //x[2] = day;
-
-        return minute;
     }
 
     private void advanceTime(){

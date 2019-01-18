@@ -38,7 +38,6 @@ public class SimulatorView extends BaseView {
 
     public void notifyGarageView(){
         garagemodel.notifyView();
-        SimulatorModel simulator = new SimulatorModel(garagemodel);
         simulator.run();
     }
 

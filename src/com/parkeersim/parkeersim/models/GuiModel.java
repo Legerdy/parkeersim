@@ -14,12 +14,10 @@ public class GuiModel extends BaseModel {
         if(isPaused){
             isPaused = false;
             model.setPause(false);
-            System.out.println("false");
         }
         else if (!isPaused){
             isPaused = true;
             model.setPause(true);
-            System.out.println("true");
         }
         notifyView();
     }
