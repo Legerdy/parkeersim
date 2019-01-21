@@ -7,7 +7,6 @@ public class GarageModel extends BaseModel {
     private int numberOfRows;
     private int numberOfPlaces;
     private int numberOfOpenSpots;
-    private boolean isPaused = true;
     private Car[][][] cars;
 
     public GarageModel(int numberOfFloors, int numberOfRows, int numberOfPlaces) {

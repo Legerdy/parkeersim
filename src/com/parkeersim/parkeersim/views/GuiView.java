@@ -11,6 +11,7 @@ public class GuiView extends BaseView {
     public GuiView(){
         setBackground(Color.GREEN);
 
+        //Button that starts/stops the simulation
         JButton startstop = new JButton("stop");
         startstop.addActionListener( (e) -> {
             notifyController(1);
@@ -21,6 +22,11 @@ public class GuiView extends BaseView {
             }
         });
         add(startstop);
+
+        //button to open the statistics view
+        JButton openinfo = new JButton("Show Information");
+        openinfo.addActionListener( (e -> notifyController(2)));
+        add(openinfo);
     }
 
     @Override

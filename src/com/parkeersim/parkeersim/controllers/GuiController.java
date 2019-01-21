@@ -17,6 +17,10 @@ public class GuiController extends BaseController {
            guimodel.pauseSim();
            return true;
         }
+        if(event_id==2){
+            guimodel.showInfo();
+            return true;
+        }
         return false;
     }
 }
