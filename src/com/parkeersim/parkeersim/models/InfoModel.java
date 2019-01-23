@@ -21,7 +21,7 @@ public class InfoModel extends BaseModel {
                 if(isVisible){
                     view.setVisible(true);
 
-                    String minute = "Minuut: " + model.getMinute();
+                    String minute = "Minute: " + model.getMinute();
                     String hour = "Hour: " + model.getHour();
                     String day = "Day: " + model.getDay();
 
