@@ -7,27 +7,32 @@ import javax.swing.*;
 import java.awt.*;
 
 public class InfoView extends BaseView {
-    private String carcount = "test";
+    private JLabel minutelabel = new JLabel();
+    private JLabel hourlabel = new JLabel();
+    private JLabel daylabel = new JLabel();
 
     public InfoView(){
-        setVisible(false);
+        setBackground(Color.red);
+        add(minutelabel);
+        add(hourlabel);
+        add(daylabel);
+
+    }
+
+    public void minute(String string){
+        minutelabel.setText(string);
+    }
+
+    public void hour(String string){
+        hourlabel.setText(string);
+    }
+
+    public void day(String string){
+        daylabel.setText(string);
     }
 
     @Override
     public void update(BaseModel model){
-        setVisible(true);
-        JLabel carcountLabel = new JLabel(carcount);
-        add(carcountLabel);
-    }
 
-    public void paintComponent(Graphics g) {
-        g.setColor(Color.WHITE);
-        g.fillRect(0, 0, 50, 50);
-
-        int angle=(360*(100/(20)));
-        g.setColor(Color.BLUE);
-        g.fillArc(10, 10, 180, 180, 0, angle);
-        g.setColor(Color.LIGHT_GRAY);
-        g.fillArc(10, 10, 180, 180, angle, 360-angle);
     }
 }

@@ -3,7 +3,9 @@ package com.parkeersim.parkeersim.models;
 import com.parkeersim.mvc.BaseModel;
 
 public class GuiModel extends BaseModel {
-    private boolean isPaused;
+    private boolean simPaused;
+    private boolean infoVisible;
+
     private SimulatorModel simmodel;
     private InfoModel infomodel;
 
@@ -13,20 +15,26 @@ public class GuiModel extends BaseModel {
     }
 
     public void pauseSim(){
-        if(isPaused){
-            isPaused = false;
+        if(simPaused){
+            simPaused = false;
             simmodel.setPause(false);
         }
-        else if (!isPaused){
-            isPaused = true;
+        else if (!simPaused){
+            simPaused = true;
             simmodel.setPause(true);
         }
-        notifyView();
+        simmodel.notifyView();
     }
 
     public void showInfo(){
-        //new thread
-        //update infoview
+        if(infoVisible){
+            infoVisible = false;
+            infomodel.setVisible(false);
+        }
+        else if (!infoVisible){
+            infoVisible = true;
+            infomodel.setVisible(true);
+        }
         infomodel.notifyView();
     }
 }

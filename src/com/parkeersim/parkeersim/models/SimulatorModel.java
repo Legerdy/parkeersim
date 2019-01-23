@@ -74,6 +74,18 @@ public class SimulatorModel extends BaseModel {
         handleEntrance();
     }
 
+    public int getDay(){
+        return day;
+    }
+
+    public int getHour(){
+        return hour;
+    }
+
+    public int getMinute(){
+        return minute;
+    }
+
     private void advanceTime(){
         // Advance the time by one minute.
         minute++;

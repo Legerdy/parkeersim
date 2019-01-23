@@ -23,6 +23,7 @@ public class SimulatorView extends BaseView {
 
     public SimulatorView(){
         //todo: do things like setting JPanel layout and such
+
         garageview = new GarageView();
         garagemodel = new GarageModel(3, 4, 50);
         garagemodel.addView(garageview);
@@ -30,7 +31,7 @@ public class SimulatorView extends BaseView {
         simulator = new SimulatorModel(garagemodel);
 
         infoview = new InfoView();
-        infomodel = new InfoModel();
+        infomodel = new InfoModel(infoview, simulator);
         infomodel.addView(infoview);
 
         guimodel = new GuiModel(simulator, infomodel);
