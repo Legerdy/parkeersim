@@ -7,16 +7,26 @@ import javax.swing.*;
 import java.awt.*;
 
 public class InfoView extends BaseView {
+    private JFrame frame = new JFrame();
+
     private JLabel minutelabel = new JLabel();
     private JLabel hourlabel = new JLabel();
     private JLabel daylabel = new JLabel();
 
     public InfoView(){
-        setBackground(Color.red);
-        add(minutelabel);
-        add(hourlabel);
-        add(daylabel);
+        frame.setLayout(new FlowLayout());
+        frame.setSize(400,400);
 
+        frame.setBackground(Color.red);
+        frame.add(daylabel);
+        frame.add(hourlabel);
+        frame.add(minutelabel);
+
+        //frame.setVisible(true);
+    }
+
+    public void setFrameVisible(boolean state){
+        frame.setVisible(state);
     }
 
     public void minute(String string){

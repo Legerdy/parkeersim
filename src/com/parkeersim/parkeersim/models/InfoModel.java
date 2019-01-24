@@ -19,7 +19,7 @@ public class InfoModel extends BaseModel {
         Thread thread = new Thread(() -> {
             while (true){
                 if(isVisible){
-                    view.setVisible(true);
+                    view.setFrameVisible(true);
 
                     String minute = "Minute: " + model.getMinute();
                     String hour = "Hour: " + model.getHour();
@@ -29,7 +29,7 @@ public class InfoModel extends BaseModel {
                     view.hour(hour);
                     view.day(day);
                 } else {
-                    view.setVisible(false);
+                    view.setFrameVisible(false);
                 }
 
                 try {

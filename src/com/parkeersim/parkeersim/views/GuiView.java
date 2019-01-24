@@ -12,13 +12,13 @@ public class GuiView extends BaseView {
         setBackground(Color.GREEN);
 
         //Button that starts/stops the simulation
-        JButton startstop = new JButton("stop");
+        JButton startstop = new JButton("Stop");
         startstop.addActionListener( (e) -> {
             notifyController(1);
-            if(startstop.getText() == "stop"){
-                startstop.setText("start");
+            if(startstop.getText() == "Stop"){
+                startstop.setText("Start");
             } else {
-                startstop.setText("stop");
+                startstop.setText("Stop");
             }
         });
         add(startstop);
