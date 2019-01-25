@@ -73,7 +73,7 @@ public class GarageModel extends BaseModel {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place);
+                    Location location = new Location(floor, row, place, false);
                     if (getCarAt(location) == null) {
                         return location;
                     }
@@ -87,7 +87,7 @@ public class GarageModel extends BaseModel {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place);
+                    Location location = new Location(floor, row, place, false);
                     Car car = getCarAt(location);
                     if (car != null && car.getMinutesLeft() <= 0 && !car.getIsPaying()) {
                         return car;
@@ -102,7 +102,7 @@ public class GarageModel extends BaseModel {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place);
+                    Location location = new Location(floor, row, place, false);
                     Car car = getCarAt(location);
                     if (car != null) {
                         car.tick();
