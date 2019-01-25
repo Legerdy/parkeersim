@@ -1,6 +1,7 @@
 package com.parkeersim.parkeersim.models;
 
 public class Location {
+    private boolean parkingPassOnly;
 
     private int floor;
     private int row;
@@ -9,10 +10,11 @@ public class Location {
     /**
      * Constructor for objects of class Location
      */
-    public Location(int floor, int row, int place) {
+    public Location(int floor, int row, int place, boolean parkingPassOnly) {
         this.floor = floor;
         this.row = row;
         this.place = place;
+        this.parkingPassOnly = parkingPassOnly;
     }
 
     /**
@@ -65,6 +67,10 @@ public class Location {
      */
     public int getPlace() {
         return place;
+    }
+
+    public boolean getParkingPassOnly(){
+        return parkingPassOnly;
     }
 
 }

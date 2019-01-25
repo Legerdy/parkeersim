@@ -128,6 +128,10 @@ public class SimulatorModel extends BaseModel {
         addArrivingCars(numberOfCars, PASS);
     }
 
+    /**
+     * This method takes the first car in the queue and assigns it to a parking space
+     * @param queue
+     */
     private void carsEntering(CarQueue queue){
         int i=0;
         // Remove car from the front of the queue and assign to a parking space.
