@@ -8,6 +8,9 @@ import com.parkeersim.parkeersim.models.GuiModel;
 import com.parkeersim.parkeersim.models.InfoModel;
 import com.parkeersim.parkeersim.models.SimulatorModel;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class SimulatorView extends BaseView {
     private GarageView garageview;
     private GarageModel garagemodel;
@@ -40,10 +43,15 @@ public class SimulatorView extends BaseView {
         guiview.setController(guicontroller);
         guimodel.addView(guiview);
 
+        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
         add(infoview);
-        add(guiview);
-        add(garageview);
+        add(guiview, BorderLayout.PAGE_START);
+        add(garageview,  BorderLayout.PAGE_END);
+
+        //JPanel legendPanel = new JPanel();
+
+
         setVisible(true);
     }
 

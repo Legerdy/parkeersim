@@ -9,6 +9,7 @@ import java.awt.*;
 public class InfoView extends BaseView {
     private JFrame frame = new JFrame();
 
+    private JPanel timePanel = new JPanel();
     private JLabel minutelabel = new JLabel();
     private JLabel hourlabel = new JLabel();
     private JLabel daylabel = new JLabel();
@@ -23,11 +24,12 @@ public class InfoView extends BaseView {
     public InfoView(){
         frame.setLayout(new FlowLayout());
         frame.setSize(400,400);
-
         frame.setBackground(Color.red);
-        frame.add(daylabel);
-        frame.add(hourlabel);
-        frame.add(minutelabel);
+
+        frame.add(timePanel);
+        timePanel.add(daylabel);
+        timePanel.add(hourlabel);
+        timePanel.add(minutelabel);
 
         frame.add(parkingSpotsPanel);
         parkingSpotsPanel.add(openParkingPassSpots);

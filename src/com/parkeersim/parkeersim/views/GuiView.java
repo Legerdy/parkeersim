@@ -10,6 +10,10 @@ public class GuiView extends BaseView {
 
     public GuiView(){
         setBackground(Color.GREEN);
+        Dimension d = new Dimension(200, 40);
+        setPreferredSize(d);
+        //setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        //setLayout(new FlowLayout());
 
         //Button that starts/stops the simulation
         JButton startstop = new JButton("Stop");
@@ -21,7 +25,7 @@ public class GuiView extends BaseView {
                 startstop.setText("Stop");
             }
         });
-        add(startstop);
+        add(startstop, BorderLayout.CENTER);
 
         //button to open the statistics view
         JButton openinfo = new JButton("Show Information");
