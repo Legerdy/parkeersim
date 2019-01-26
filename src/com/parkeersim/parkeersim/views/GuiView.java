@@ -27,6 +27,14 @@ public class GuiView extends BaseView {
         JButton openinfo = new JButton("Show Information");
         openinfo.addActionListener( (e -> notifyController(2)));
         add(openinfo);
+
+        //buttons for changing simulation speed
+        JButton addspeed = new JButton("Slower Simulation Speed");
+        addspeed.addActionListener( (e) -> notifyController(3));
+        add(addspeed);
+        JButton removespeed = new JButton("Faster Simulation Speed");
+        removespeed.addActionListener( (e) -> notifyController(4));
+        add(removespeed);
     }
 
     @Override

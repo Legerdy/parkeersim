@@ -26,6 +26,18 @@ public class GuiModel extends BaseModel {
         simmodel.notifyView();
     }
 
+    public void addTickPause(){
+        simmodel.setTickPause(simmodel.getTickPause() + 5);
+    }
+
+    public void subtractTickPause(){
+        if(simmodel.getTickPause() > 6){
+            simmodel.setTickPause(simmodel.getTickPause() - 5);
+        } else {
+            simmodel.setTickPause(1);
+        }
+    }
+
     public void showInfo(){
         if(infoVisible){
             infoVisible = false;

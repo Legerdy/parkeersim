@@ -14,8 +14,11 @@ public class InfoView extends BaseView {
     private JLabel daylabel = new JLabel();
 
     private JPanel parkingSpotsPanel = new JPanel();
-    private JLabel openParkingPassSpots = new JLabel("test");
-    private JLabel openParkingSpots = new JLabel("test");
+    private JLabel openParkingPassSpots = new JLabel();
+    private JLabel openParkingSpots = new JLabel();
+
+    private JPanel simulationSpeedPanel = new JPanel();
+    private JLabel simulationSpeed = new JLabel();
 
     public InfoView(){
         frame.setLayout(new FlowLayout());
@@ -29,6 +32,9 @@ public class InfoView extends BaseView {
         frame.add(parkingSpotsPanel);
         parkingSpotsPanel.add(openParkingPassSpots);
         parkingSpotsPanel.add(openParkingSpots);
+
+        frame.add(simulationSpeedPanel);
+        simulationSpeedPanel.add(simulationSpeed);
 
         //frame.setVisible(true);
     }
@@ -55,6 +61,10 @@ public class InfoView extends BaseView {
 
     public void parkingsSpots(String string){
         openParkingSpots.setText(string);
+    }
+
+    public void simulationSpeed(String string){
+        simulationSpeed.setText(string);
     }
 
     @Override

@@ -21,7 +21,7 @@ public class SimulatorModel extends BaseModel {
     private int hour = 0;
     private int minute = 0;
 
-    private int tickPause = 50;
+    private int tickPause = 100;
 
     int weekDayArrivals= 1000; // average number of arriving cars per hour
     int weekendArrivals = 200; // average number of arriving cars per hour
@@ -60,6 +60,15 @@ public class SimulatorModel extends BaseModel {
     public void setPause(boolean state){
         isPaused = state;
     }
+
+    public void setTickPause(int newTickPause){
+        this.tickPause = newTickPause;
+    }
+
+    public int getTickPause(){
+        return tickPause;
+    }
+
 
     private void tick() {
         advanceTime();

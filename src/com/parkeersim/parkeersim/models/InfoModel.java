@@ -26,16 +26,17 @@ public class InfoModel extends BaseModel {
                     String day = "Day: " + model.getDay();
                     String parkingPassSpots = "Free parking pass spots : " + model.getOpenParkingPassSpots();
                     String parkingSpots = "Free parking spots : " + model.getOpenSpots();
+                    String simulationSpeed = "Simulation speed : " + model.getTickPause();
 
                     view.minute(minute);
                     view.hour(hour);
                     view.day(day);
                     view.parkingPassSpots(parkingPassSpots);
                     view.parkingsSpots(parkingSpots);
+                    view.simulationSpeed(simulationSpeed);
                 } else {
                     view.setFrameVisible(false);
                 }
-
                 try {
                     Thread.sleep(1);
                 } catch (InterruptedException e) {

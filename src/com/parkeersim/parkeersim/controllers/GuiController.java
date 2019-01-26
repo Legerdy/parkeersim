@@ -21,6 +21,12 @@ public class GuiController extends BaseController {
             guimodel.showInfo();
             return true;
         }
+        if(event_id==3){
+            guimodel.addTickPause();
+        }
+        if(event_id==4){
+            guimodel.subtractTickPause();
+        }
         return false;
     }
 }
