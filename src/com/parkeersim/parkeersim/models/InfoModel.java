@@ -24,10 +24,14 @@ public class InfoModel extends BaseModel {
                     String minute = "Minute: " + model.getMinute();
                     String hour = "Hour: " + model.getHour();
                     String day = "Day: " + model.getDay();
+                    String parkingPassSpots = "Free parking pass spots : " + model.getOpenParkingPassSpots();
+                    String parkingSpots = "Free parking spots : " + model.getOpenSpots();
 
                     view.minute(minute);
                     view.hour(hour);
                     view.day(day);
+                    view.parkingPassSpots(parkingPassSpots);
+                    view.parkingsSpots(parkingSpots);
                 } else {
                     view.setFrameVisible(false);
                 }

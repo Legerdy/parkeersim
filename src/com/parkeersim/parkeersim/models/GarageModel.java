@@ -7,13 +7,15 @@ public class GarageModel extends BaseModel {
     private int numberOfRows;
     private int numberOfPlaces;
     private int numberOfOpenSpots;
+    private int numberOfOpenParkingPassSpots;
     private Car[][][] cars;
 
     public GarageModel(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
         this.numberOfPlaces = numberOfPlaces;
-        this.numberOfOpenSpots = numberOfFloors * numberOfRows * numberOfPlaces;
+        this.numberOfOpenSpots = (numberOfFloors * numberOfRows * numberOfPlaces) - numberOfPlaces;
+        this.numberOfOpenParkingPassSpots = numberOfPlaces;
 
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
     }
@@ -34,6 +36,10 @@ public class GarageModel extends BaseModel {
         return numberOfOpenSpots;
     }
 
+    public int getNumberOfOpenParkingPassSpots(){
+        return numberOfOpenParkingPassSpots;
+    }
+
     public Car getCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
@@ -47,9 +53,16 @@ public class GarageModel extends BaseModel {
         }
         Car oldCar = getCarAt(location);
         if (oldCar == null) {
-            cars[location.getFloor()][location.getRow()][location.getPlace()] = car;
+            int floor = location.getFloor();
+            int row = location.getRow();
+            int place = location.getPlace();
+            cars[floor][row][place] = car;
             car.setLocation(location);
-            numberOfOpenSpots--;
+            if(floor == 0 && row == 0){
+                numberOfOpenParkingPassSpots--;
+            } else {
+                numberOfOpenSpots--;
+            }
             return true;
         }
         return false;
@@ -65,19 +78,19 @@ public class GarageModel extends BaseModel {
         }
         cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
         car.setLocation(null);
-        numberOfOpenSpots++;
+        if(location.getFloor() == 0 && location.getRow() == 0){
+            numberOfOpenParkingPassSpots++;
+        } else {
+            numberOfOpenSpots++;
+        }
         return car;
     }
 
     public Location getFirstFreeParkingPassLocation() {
-        for (int floor = 0; floor < 1; floor++) {
-            for (int row = 0; row < 1; row++) {
-                for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place);
-                    if (getCarAt(location) == null) {
-                        return location;
-                    }
-                }
+        for(int place = 0; place < getNumberOfPlaces(); place++){
+            Location location = new Location(0, 0, place);
+            if (getCarAt(location) == null) {
+                return location;
             }
         }
         return null;
@@ -85,11 +98,18 @@ public class GarageModel extends BaseModel {
 
     public Location getFirstFreeLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
-            for (int row = 1; row < getNumberOfRows(); row++) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place);
-                    if (getCarAt(location) == null) {
-                        return location;
+                    if(floor == 0 && row != 0){
+                        Location location = new Location(floor, row, place);
+                        if (getCarAt(location) == null) {
+                            return location;
+                        }
+                    } else if (floor != 0){
+                        Location location = new Location(floor, row, place);
+                        if (getCarAt(location) == null) {
+                            return location;
+                        }
                     }
                 }
             }

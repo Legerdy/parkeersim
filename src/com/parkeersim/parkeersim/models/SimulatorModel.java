@@ -21,7 +21,7 @@ public class SimulatorModel extends BaseModel {
     private int hour = 0;
     private int minute = 0;
 
-    private int tickPause = 100;
+    private int tickPause = 50;
 
     int weekDayArrivals= 1000; // average number of arriving cars per hour
     int weekendArrivals = 200; // average number of arriving cars per hour
@@ -86,6 +86,14 @@ public class SimulatorModel extends BaseModel {
         return minute;
     }
 
+    public int getOpenParkingPassSpots(){
+        return garagemodel.getNumberOfOpenParkingPassSpots();
+    }
+
+    public int getOpenSpots(){
+        return garagemodel.getNumberOfOpenSpots();
+    }
+
     private void advanceTime(){
         // Advance the time by one minute.
         minute++;
@@ -121,6 +129,9 @@ public class SimulatorModel extends BaseModel {
         garagemodel.updateView();
     }
 
+    /**
+     * Method for adding new arriving cars
+     */
     private void carsArriving(){
         int numberOfCars=getNumberOfCars(weekDayArrivals, weekendArrivals);
         addArrivingCars(numberOfCars, AD_HOC);
@@ -135,15 +146,13 @@ public class SimulatorModel extends BaseModel {
     private void carsEntering(CarQueue queue){
         int i=0;
         // Remove car from the front of the queue and assign to a parking space.
-        while (queue.carsInQueue()>0 &&
-                garagemodel.getNumberOfOpenSpots()>0 &&
-                i<enterSpeed) {
+        while (queue.carsInQueue()>0 && i<enterSpeed) {
             Car car = queue.removeCar();
-            if(car.getHasToPay() == false){
+            if(car.getHasToPay() == false && garagemodel.getNumberOfOpenParkingPassSpots()>0){
                 Location freeLocation = garagemodel.getFirstFreeParkingPassLocation();
                 garagemodel.setCarAt(freeLocation, car);
                 i++;
-            } else {
+            } else if (garagemodel.getNumberOfOpenSpots()>0){
                 Location freeLocation = garagemodel.getFirstFreeLocation();
                 garagemodel.setCarAt(freeLocation, car);
                 i++;
@@ -200,6 +209,11 @@ public class SimulatorModel extends BaseModel {
         return (int)Math.round(numberOfCarsPerHour / 60);
     }
 
+    /**
+     * Method that adds new cars and puts them in the corresponding queue
+     * @param numberOfCars
+     * @param type
+     */
     private void addArrivingCars(int numberOfCars, String type){
         // Add the cars to the back of the queue.
         switch(type) {

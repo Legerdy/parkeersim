@@ -13,6 +13,10 @@ public class InfoView extends BaseView {
     private JLabel hourlabel = new JLabel();
     private JLabel daylabel = new JLabel();
 
+    private JPanel parkingSpotsPanel = new JPanel();
+    private JLabel openParkingPassSpots = new JLabel("test");
+    private JLabel openParkingSpots = new JLabel("test");
+
     public InfoView(){
         frame.setLayout(new FlowLayout());
         frame.setSize(400,400);
@@ -21,6 +25,10 @@ public class InfoView extends BaseView {
         frame.add(daylabel);
         frame.add(hourlabel);
         frame.add(minutelabel);
+
+        frame.add(parkingSpotsPanel);
+        parkingSpotsPanel.add(openParkingPassSpots);
+        parkingSpotsPanel.add(openParkingSpots);
 
         //frame.setVisible(true);
     }
@@ -39,6 +47,14 @@ public class InfoView extends BaseView {
 
     public void day(String string){
         daylabel.setText(string);
+    }
+
+    public void parkingPassSpots(String string){
+        openParkingPassSpots.setText(string);
+    }
+
+    public void parkingsSpots(String string){
+        openParkingSpots.setText(string);
     }
 
     @Override
