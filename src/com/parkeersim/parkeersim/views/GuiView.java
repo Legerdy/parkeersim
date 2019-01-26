@@ -9,9 +9,9 @@ import java.awt.*;
 public class GuiView extends BaseView {
 
     public GuiView(){
-        setBackground(Color.GREEN);
+        setBackground(Color.DARK_GRAY);
         Dimension d = new Dimension(200, 40);
-        setPreferredSize(d);
+        //setPreferredSize(d);
         //setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         //setLayout(new FlowLayout());
 
@@ -29,14 +29,21 @@ public class GuiView extends BaseView {
 
         //button to open the statistics view
         JButton openinfo = new JButton("Show Information");
-        openinfo.addActionListener( (e -> notifyController(2)));
+        openinfo.addActionListener( (e -> {
+            notifyController(2);
+            if(openinfo.getText() == "Show Information"){
+                openinfo.setText("Close Information");
+            } else {
+                openinfo.setText("Show Information");
+            }
+        }));
         add(openinfo);
 
         //buttons for changing simulation speed
-        JButton addspeed = new JButton("Slower Simulation Speed");
+        JButton addspeed = new JButton("Lower Simulation Speed");
         addspeed.addActionListener( (e) -> notifyController(3));
         add(addspeed);
-        JButton removespeed = new JButton("Faster Simulation Speed");
+        JButton removespeed = new JButton("Higher Simulation Speed");
         removespeed.addActionListener( (e) -> notifyController(4));
         add(removespeed);
     }

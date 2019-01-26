@@ -20,7 +20,7 @@ public class GarageView extends BaseView{
      * Overridden. Tell the GUI manager how big we would like to be.
      */
     public Dimension getPreferredSize() {
-        return new Dimension(900, 600);
+        return new Dimension(800, 600);
     }
 
     /**
