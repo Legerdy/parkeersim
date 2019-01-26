@@ -10,11 +10,10 @@ public class Location {
     /**
      * Constructor for objects of class Location
      */
-    public Location(int floor, int row, int place, boolean parkingPassOnly) {
+    public Location(int floor, int row, int place) {
         this.floor = floor;
         this.row = row;
         this.place = place;
-        this.parkingPassOnly = parkingPassOnly;
     }
 
     /**
@@ -67,10 +66,6 @@ public class Location {
      */
     public int getPlace() {
         return place;
-    }
-
-    public boolean getParkingPassOnly(){
-        return parkingPassOnly;
     }
 
 }

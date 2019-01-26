@@ -139,9 +139,15 @@ public class SimulatorModel extends BaseModel {
                 garagemodel.getNumberOfOpenSpots()>0 &&
                 i<enterSpeed) {
             Car car = queue.removeCar();
-            Location freeLocation = garagemodel.getFirstFreeLocation();
-            garagemodel.setCarAt(freeLocation, car);
-            i++;
+            if(car.getHasToPay() == false){
+                Location freeLocation = garagemodel.getFirstFreeParkingPassLocation();
+                garagemodel.setCarAt(freeLocation, car);
+                i++;
+            } else {
+                Location freeLocation = garagemodel.getFirstFreeLocation();
+                garagemodel.setCarAt(freeLocation, car);
+                i++;
+            }
         }
     }
 

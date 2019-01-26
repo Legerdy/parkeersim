@@ -66,10 +66,15 @@ public class GarageView extends BaseView{
         for(int floor = 0; floor < garagemodel.getNumberOfFloors(); floor++) {
             for(int row = 0; row < garagemodel.getNumberOfRows(); row++) {
                 for(int place = 0; place < garagemodel.getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place, false);
+                    Location location = new Location(floor, row, place);
                     Car car = garagemodel.getCarAt(location);
-                    Color color = car == null ? Color.white : car.getColor();
-                    drawPlace(graphics, location, color);
+                    if(car == null && floor == 0 && row == 0){
+                        Color color = Color.cyan;
+                        drawPlace(graphics, location, color);
+                    } else {
+                        Color color = car == null ? Color.white : car.getColor();
+                        drawPlace(graphics, location, color);
+                    }
                 }
             }
         }

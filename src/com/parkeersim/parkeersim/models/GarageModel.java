@@ -69,11 +69,25 @@ public class GarageModel extends BaseModel {
         return car;
     }
 
+    public Location getFirstFreeParkingPassLocation() {
+        for (int floor = 0; floor < 1; floor++) {
+            for (int row = 0; row < 1; row++) {
+                for (int place = 0; place < getNumberOfPlaces(); place++) {
+                    Location location = new Location(floor, row, place);
+                    if (getCarAt(location) == null) {
+                        return location;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
     public Location getFirstFreeLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
-            for (int row = 0; row < getNumberOfRows(); row++) {
+            for (int row = 1; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place, false);
+                    Location location = new Location(floor, row, place);
                     if (getCarAt(location) == null) {
                         return location;
                     }
@@ -87,7 +101,7 @@ public class GarageModel extends BaseModel {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place, false);
+                    Location location = new Location(floor, row, place);
                     Car car = getCarAt(location);
                     if (car != null && car.getMinutesLeft() <= 0 && !car.getIsPaying()) {
                         return car;
@@ -102,7 +116,7 @@ public class GarageModel extends BaseModel {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place, false);
+                    Location location = new Location(floor, row, place);
                     Car car = getCarAt(location);
                     if (car != null) {
                         car.tick();
