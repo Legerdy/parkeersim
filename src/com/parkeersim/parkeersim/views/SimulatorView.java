@@ -25,8 +25,6 @@ public class SimulatorView extends BaseView {
     private InfoModel infomodel;
 
     public SimulatorView(){
-        //todo: do things like setting JPanel layout and such
-
         garageview = new GarageView();
         garagemodel = new GarageModel(3, 4, 50);
         garagemodel.addView(garageview);
@@ -43,14 +41,33 @@ public class SimulatorView extends BaseView {
         guiview.setController(guicontroller);
         guimodel.addView(guiview);
 
+        //This makes the legend
+        JPanel legendPanel = new JPanel();
+        legendPanel.setLayout(new BoxLayout(legendPanel, BoxLayout.PAGE_AXIS));
+        JLabel legend = new JLabel("   Legenda:");
+
+        legend.setFont(new Font("Serif", Font.BOLD, 14));
+        JLabel adhocCar = new JLabel("<html><font color='red'>■</font> = Ad-Hoc Car</html>");
+        JLabel parkingpassCar = new JLabel("<html><font color='blue'>■</font> = Parking Pass Car</html>");
+        JLabel reservationCar = new JLabel("<html><font color='green'>■</font> = Reservation Car</html>");
+        JLabel parkingSpace = new JLabel("<html><font color='white'>■</font> = Free Parking Space</html>");
+        JLabel passSpace = new JLabel("<html><font color='#00FFFF'>■</font> = Free Parking Pass Space</html>");
+        legendPanel.add(legend);
+        legendPanel.add(adhocCar);
+        legendPanel.add(parkingpassCar);
+        legendPanel.add(reservationCar);
+        legendPanel.add(parkingSpace);
+        legendPanel.add(passSpace);
+
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+
+        JPanel contentPanel = new JPanel();
+        contentPanel.add(legendPanel);
+        contentPanel.add(garageview);
 
         add(infoview);
         add(guiview, BorderLayout.PAGE_START);
-        add(garageview,  BorderLayout.PAGE_END);
-
-        //JPanel legendPanel = new JPanel();
-
+        add(contentPanel, BorderLayout.PAGE_END);
 
         setVisible(true);
     }
