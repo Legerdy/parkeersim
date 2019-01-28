@@ -6,8 +6,10 @@ public abstract class Car {
 
     private Location location;
     private int minutesLeft;
+    private int stayTime;
     private boolean isPaying;
     private boolean hasToPay;
+    private int typeid;
 
     /**
      * Constructor for objects of class Car
@@ -30,6 +32,11 @@ public abstract class Car {
 
     public void setMinutesLeft(int minutesLeft) {
         this.minutesLeft = minutesLeft;
+        this.stayTime = minutesLeft;
+    }
+
+    public int getStayTime(){
+        return stayTime;
     }
     
     public boolean getIsPaying() {
@@ -38,6 +45,14 @@ public abstract class Car {
 
     public void setIsPaying(boolean isPaying) {
         this.isPaying = isPaying;
+    }
+
+    public void setTypeid(int id){
+        this.typeid = id;
+    }
+
+    public int getTypeid(){
+        return this.typeid;
     }
 
     public boolean getHasToPay() {

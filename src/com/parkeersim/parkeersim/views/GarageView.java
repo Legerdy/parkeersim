@@ -69,7 +69,7 @@ public class GarageView extends BaseView{
                     Location location = new Location(floor, row, place);
                     Car car = garagemodel.getCarAt(location);
                     if(car == null && floor == 0 && row == 0){
-                        Color color = Color.cyan;
+                        Color color = Color.decode("#8c8c8c");
                         drawPlace(graphics, location, color);
                     } else {
                         Color color = car == null ? Color.white : car.getColor();

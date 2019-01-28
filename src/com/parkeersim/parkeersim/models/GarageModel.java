@@ -10,6 +10,10 @@ public class GarageModel extends BaseModel {
     private int numberOfOpenParkingPassSpots;
     private Car[][][] cars;
 
+    private int numberOfAdHocCars = 0;
+    private int numberOfParkingPassCars = 0;
+    private int numberOfReservationCars = 0;
+
     public GarageModel(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
@@ -63,6 +67,17 @@ public class GarageModel extends BaseModel {
             } else {
                 numberOfOpenSpots--;
             }
+            switch(car.getTypeid()){
+                case 0:
+                    numberOfAdHocCars++;
+                    break;
+                case 1:
+                    numberOfParkingPassCars++;
+                    break;
+                case 2:
+                    numberOfReservationCars++;
+                    break;
+            }
             return true;
         }
         return false;
@@ -82,6 +97,17 @@ public class GarageModel extends BaseModel {
             numberOfOpenParkingPassSpots++;
         } else {
             numberOfOpenSpots++;
+        }
+        switch(car.getTypeid()){
+            case 0:
+                numberOfAdHocCars--;
+                break;
+            case 1:
+                numberOfParkingPassCars--;
+                break;
+            case 2:
+                numberOfReservationCars--;
+                break;
         }
         return car;
     }
@@ -130,6 +156,18 @@ public class GarageModel extends BaseModel {
             }
         }
         return null;
+    }
+
+    public int getNumberOfAdHocCars(){
+        return numberOfAdHocCars;
+    }
+
+    public int getNumberOfParkingPassCars(){
+        return numberOfParkingPassCars;
+    }
+
+    public int getNumberOfReservationCars(){
+        return numberOfReservationCars;
     }
 
     public void tick() {

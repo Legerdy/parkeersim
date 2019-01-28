@@ -2,7 +2,8 @@ package com.parkeersim.parkeersim.models;
 
 import com.parkeersim.mvc.BaseModel;
 import com.parkeersim.parkeersim.views.InfoView;
-import com.parkeersim.parkeersim.views.SimulatorView;
+
+import java.math.BigDecimal;
 
 public class InfoModel extends BaseModel {
     private boolean isVisible = false;
@@ -32,8 +33,16 @@ public class InfoModel extends BaseModel {
                     view.hour(hour);
                     view.day(day);
                     view.parkingPassSpots(parkingPassSpots);
-                    view.parkingsSpots(parkingSpots);
+                    view.parkingSpots(parkingSpots);
                     view.simulationSpeed(simulationSpeed);
+
+                    float redangle = ((float)model.getNumberOfAdHocCars()) / model.getAllSpots() * 360;
+                    float blueangle = ((float)model.getNumberOfParkingPassCars()) / model.getAllSpots() * 360;
+
+                    InfoView.Graph graph = view.getGraph();
+                    graph.setRedAngle((int)redangle);
+                    graph.setBlueAngle((int)blueangle);
+                    //graph.setGreenAngle(model.getNumberOfReservationCars() / model.getAllSpots() * 360);
                 } else {
                     view.setFrameVisible(false);
                 }

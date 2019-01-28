@@ -23,12 +23,17 @@ public class SimulatorModel extends BaseModel {
 
     private int tickPause = 100;
 
+    private double money;
+
+    //todo: atm komen er te veel normale auto's binnen waardoor de queue zo vol komt dat hij nooit meer omlaag gaat
+    //todo: als auto's te lang in de queue staan kunnen ze weg gaan
+
     int weekDayArrivals= 1000; // average number of arriving cars per hour
     int weekendArrivals = 200; // average number of arriving cars per hour
     int weekDayPassArrivals= 50; // average number of arriving cars per hour
     int weekendPassArrivals = 5; // average number of arriving cars per hour
 
-    int enterSpeed = 3; // number of cars that can enter per minute
+    int enterSpeed = 4; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
     int exitSpeed = 5; // number of cars that can leave per minute
 
@@ -101,6 +106,22 @@ public class SimulatorModel extends BaseModel {
 
     public int getOpenSpots(){
         return garagemodel.getNumberOfOpenSpots();
+    }
+
+    public int getAllSpots(){
+        return garagemodel.getNumberOfRows() * garagemodel.getNumberOfFloors() * garagemodel.getNumberOfPlaces();
+    }
+
+    public int getNumberOfAdHocCars(){
+        return garagemodel.getNumberOfAdHocCars();
+    }
+
+    public int getNumberOfParkingPassCars(){
+        return garagemodel.getNumberOfParkingPassCars();
+    }
+
+    public int getNumberOfReservationCars(){
+        return garagemodel.getNumberOfReservationCars();
     }
 
     private void advanceTime(){
@@ -189,7 +210,9 @@ public class SimulatorModel extends BaseModel {
         int i=0;
         while (paymentCarQueue.carsInQueue()>0 && i < paymentSpeed){
             Car car = paymentCarQueue.removeCar();
-            // TODO Handle payment.
+            double priceRounded = Math.round(car.getStayTime() * 0.025 * 100);
+            double price = priceRounded/100;
+            money += price;
             carLeavesSpot(car);
             i++;
         }

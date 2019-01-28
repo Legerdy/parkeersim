@@ -44,14 +44,14 @@ public class SimulatorView extends BaseView {
         //This makes the legend
         JPanel legendPanel = new JPanel();
         legendPanel.setLayout(new BoxLayout(legendPanel, BoxLayout.PAGE_AXIS));
-        JLabel legend = new JLabel("   Legenda:");
+        JLabel legend = new JLabel("      Legend:");
 
         legend.setFont(new Font("Serif", Font.BOLD, 14));
         JLabel adhocCar = new JLabel("<html><font color='red'>■</font> = Ad-Hoc Car</html>");
         JLabel parkingpassCar = new JLabel("<html><font color='blue'>■</font> = Parking Pass Car</html>");
-        JLabel reservationCar = new JLabel("<html><font color='green'>■</font> = Reservation Car</html>");
+        JLabel reservationCar = new JLabel("<html><font color='#00ff00'>■</font> = Reservation Car</html>");
         JLabel parkingSpace = new JLabel("<html><font color='white'>■</font> = Free Parking Space</html>");
-        JLabel passSpace = new JLabel("<html><font color='#00FFFF'>■</font> = Free Parking Pass Space</html>");
+        JLabel passSpace = new JLabel("<html><font color='#8c8c8c'>■</font> = Free Parking Pass Space</html>");
         legendPanel.add(legend);
         legendPanel.add(adhocCar);
         legendPanel.add(parkingpassCar);
