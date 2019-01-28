@@ -104,6 +104,7 @@ public class InfoView extends BaseView {
         private JLabel numberAdHoc = new JLabel();
         private JLabel numberPass = new JLabel();
         private JLabel numberReservation = new JLabel();
+        private JLabel numberFree = new JLabel();
 
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
@@ -142,6 +143,10 @@ public class InfoView extends BaseView {
             numberReservation.setText(string);
         }
 
+        public void setFreeNumber(String string){
+            numberFree.setText(string);
+        }
+
         public Graph(){
             JPanel panel = new JPanel();
 
@@ -173,14 +178,21 @@ public class InfoView extends BaseView {
             Reservation.setLocation(5,91);
             numberReservation.setSize(40,20);
             numberReservation.setLocation(120,91);
+            JLabel Free = new JLabel("Total free spots:");
+            Free.setSize(130,20);
+            Free.setLocation(5,108);
+            numberFree.setSize(40,20);
+            numberFree.setLocation(120,108);
 
             panel.setLayout(null);
             panel.add(numberAdHoc);
             panel.add(numberPass);
             panel.add(numberReservation);
+            panel.add(numberFree);
             panel.add(AdHoc);
             panel.add(Pass);
             panel.add(Reservation);
+            panel.add(Free);
         }
     }
 

@@ -128,6 +128,10 @@ public class SimulatorModel extends BaseModel {
         return garagemodel.getNumberOfReservationCars();
     }
 
+    public int getTotalNumberOfOpenParkingSpaces(){
+        return getOpenParkingPassSpots() + getOpenSpots();
+    }
+
     private void advanceTime(){
         // Advance the time by one minute.
         minute++;

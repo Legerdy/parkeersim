@@ -30,7 +30,7 @@ public class InfoModel extends BaseModel {
                     String day = "Day: " + model.getDay();
                     String balance = "Balance: €" + balanceRound/100;
                     String parkingPassSpots = "Free parking pass spots : " + model.getOpenParkingPassSpots();
-                    String parkingSpots = "Free parking spots : " + ((float)model.getOpenSpots());
+                    String parkingSpots = "Free normal parking spots : " + ((float)model.getOpenSpots());
                     String simulationSpeed = "Simulation speed : " + model.getTickPause();
 
                     view.minute(minute);
@@ -41,13 +41,14 @@ public class InfoModel extends BaseModel {
                     view.parkingSpots(parkingSpots);
                     view.simulationSpeed(simulationSpeed);
 
-                    //Infowview graph
+                    //Infoview graph
                     float redangle = ((float)model.getNumberOfAdHocCars()) / model.getAllSpots() * 360;
                     float blueangle = ((float)model.getNumberOfParkingPassCars()) / model.getAllSpots() * 360;
 
                     String adhocNumber = "<html><font color='red'>" + model.getNumberOfAdHocCars() + "</font></html>";
                     String passNumber = "<html><font color='blue'>"+ model.getNumberOfParkingPassCars() + "</font></html>";
                     String reservationNumber = "<html><font color='#00ff00'>" + model.getNumberOfReservationCars() + "</font></html>";
+                    String freeNumber = "<html><font color='#474747'>" + model.getTotalNumberOfOpenParkingSpaces() + "</font></html>";
 
                     InfoView.Graph graph = view.getGraph();
                     graph.setRedAngle((int)redangle);
@@ -56,6 +57,7 @@ public class InfoModel extends BaseModel {
                     graph.setAdHocNumber(adhocNumber);
                     graph.setPassNumber(passNumber);
                     graph.setReservationNumber(reservationNumber);
+                    graph.setFreeNumber(freeNumber);
                 } else {
                     view.setFrameVisible(false);
                 }
