@@ -258,14 +258,18 @@ public class SimulatorModel extends BaseModel {
         // Get the average number of cars that arrive per hour.
         int averageNumberOfCarsPerHour;
         if(day < 5){
-            if (hour < 11){
-                averageNumberOfCarsPerHour = weekDay / 2;
+            if (hour < 6){
+                averageNumberOfCarsPerHour = (weekDay / 10) * 4;
+            } else if(hour < 11){
+                averageNumberOfCarsPerHour = (weekDay / 10) * 7;
             } else {
                 averageNumberOfCarsPerHour = weekDay;
             }
         } else {
-            if (hour < 11){
-                averageNumberOfCarsPerHour = weekend / 2;
+            if (hour < 6){
+                averageNumberOfCarsPerHour = (weekend / 10) * 4;
+            } else if(hour < 11){
+                averageNumberOfCarsPerHour = (weekend / 10) * 7;
             } else {
                 averageNumberOfCarsPerHour = weekend;
             }
