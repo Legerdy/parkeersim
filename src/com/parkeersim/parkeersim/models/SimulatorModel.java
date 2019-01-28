@@ -30,12 +30,12 @@ public class SimulatorModel extends BaseModel {
     //todo: atm komen er te veel normale auto's binnen waardoor de queue zo vol komt dat hij nooit meer omlaag gaat
     //todo: als auto's te lang in de queue staan kunnen ze weg gaan
 
-    int weekDayArrivals= 1000; // average number of arriving cars per hour
-    int weekendArrivals = 200; // average number of arriving cars per hour
+    int weekDayArrivals= 150; // average number of arriving cars per hour
+    int weekendArrivals = 300; // average number of arriving cars per hour
     int weekDayPassArrivals= 50; // average number of arriving cars per hour
-    int weekendPassArrivals = 5; // average number of arriving cars per hour
+    int weekendPassArrivals = 70; // average number of arriving cars per hour
     int weekDayReservationArrivals = 20;
-    int weekendReservationArrivals = 20;
+    int weekendReservationArrivals = 25;
 
     int enterSpeed = 4; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
@@ -197,12 +197,11 @@ public class SimulatorModel extends BaseModel {
             if(car.getTypeid() == 1 && garagemodel.getNumberOfOpenParkingPassSpots()>0){
                 Location freeLocation = garagemodel.getFirstFreeParkingPassLocation();
                 garagemodel.setCarAt(freeLocation, car);
-                i++;
             } else if (garagemodel.getNumberOfOpenSpots()>0){
                 Location freeLocation = garagemodel.getFirstFreeLocation();
                 garagemodel.setCarAt(freeLocation, car);
-                i++;
             }
+            i++;
         }
     }
 
@@ -247,13 +246,30 @@ public class SimulatorModel extends BaseModel {
         }
     }
 
+    /**
+     * Method that calculates an amount of cars that enter a queue
+     * @param weekDay
+     * @param weekend
+     * @return
+     */
     private int getNumberOfCars(int weekDay, int weekend){
         Random random = new Random();
 
         // Get the average number of cars that arrive per hour.
-        int averageNumberOfCarsPerHour = day < 5
-                ? weekDay
-                : weekend;
+        int averageNumberOfCarsPerHour;
+        if(day < 5){
+            if (hour < 11){
+                averageNumberOfCarsPerHour = weekDay / 2;
+            } else {
+                averageNumberOfCarsPerHour = weekDay;
+            }
+        } else {
+            if (hour < 11){
+                averageNumberOfCarsPerHour = weekend / 2;
+            } else {
+                averageNumberOfCarsPerHour = weekend;
+            }
+        }
 
         // Calculate the number of cars that arrive this minute.
         double standardDeviation = averageNumberOfCarsPerHour * 0.3;

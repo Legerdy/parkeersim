@@ -27,7 +27,11 @@ public class GuiModel extends BaseModel {
     }
 
     public void addTickPause(){
-        simmodel.setTickPause(simmodel.getTickPause() + 5);
+        if(simmodel.getTickPause() == 1){
+            simmodel.setTickPause(5);
+        } else {
+            simmodel.setTickPause(simmodel.getTickPause() + 5);
+        }
     }
 
     public void subtractTickPause(){
