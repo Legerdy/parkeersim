@@ -22,27 +22,40 @@ public class InfoModel extends BaseModel {
                 if(isVisible){
                     view.setFrameVisible(true);
 
+                    double balanceRound = Math.round(model.getBalance() * 100);
+
+                    //Infoview
                     String minute = "Minute: " + model.getMinute();
                     String hour = "Hour: " + model.getHour();
                     String day = "Day: " + model.getDay();
+                    String balance = "Balance: €" + balanceRound/100;
                     String parkingPassSpots = "Free parking pass spots : " + model.getOpenParkingPassSpots();
-                    String parkingSpots = "Free parking spots : " + model.getOpenSpots();
+                    String parkingSpots = "Free parking spots : " + ((float)model.getOpenSpots());
                     String simulationSpeed = "Simulation speed : " + model.getTickPause();
 
                     view.minute(minute);
                     view.hour(hour);
                     view.day(day);
+                    view.balance(balance);
                     view.parkingPassSpots(parkingPassSpots);
                     view.parkingSpots(parkingSpots);
                     view.simulationSpeed(simulationSpeed);
 
+                    //Infowview graph
                     float redangle = ((float)model.getNumberOfAdHocCars()) / model.getAllSpots() * 360;
                     float blueangle = ((float)model.getNumberOfParkingPassCars()) / model.getAllSpots() * 360;
+
+                    String adhocNumber = "<html><font color='red'>" + model.getNumberOfAdHocCars() + "</font></html>";
+                    String passNumber = "<html><font color='blue'>"+ model.getNumberOfParkingPassCars() + "</font></html>";
+                    String reservationNumber = "<html><font color='#00ff00'>" + model.getNumberOfReservationCars() + "</font></html>";
 
                     InfoView.Graph graph = view.getGraph();
                     graph.setRedAngle((int)redangle);
                     graph.setBlueAngle((int)blueangle);
                     //graph.setGreenAngle(model.getNumberOfReservationCars() / model.getAllSpots() * 360);
+                    graph.setAdHocNumber(adhocNumber);
+                    graph.setPassNumber(passNumber);
+                    graph.setReservationNumber(reservationNumber);
                 } else {
                     view.setFrameVisible(false);
                 }

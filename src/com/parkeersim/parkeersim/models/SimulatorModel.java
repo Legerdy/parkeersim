@@ -100,6 +100,10 @@ public class SimulatorModel extends BaseModel {
         return minute;
     }
 
+    public double getBalance(){
+        return money;
+    }
+
     public int getOpenParkingPassSpots(){
         return garagemodel.getNumberOfOpenParkingPassSpots();
     }
