@@ -115,7 +115,7 @@ public class InfoView extends BaseView {
             g.setColor(Color.BLUE);
             g.fillArc(170,40,200,200,0,-blueAngle);
             g.setColor(Color.GREEN);
-            g.fillArc(170,40,200,200,blueAngle,-greenAngle);
+            g.fillArc(170,40,200,200,-blueAngle,-greenAngle);
             repaint();
         }
 

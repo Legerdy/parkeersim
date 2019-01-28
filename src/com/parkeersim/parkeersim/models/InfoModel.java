@@ -44,6 +44,7 @@ public class InfoModel extends BaseModel {
                     //Infoview graph
                     float redangle = ((float)model.getNumberOfAdHocCars()) / model.getAllSpots() * 360;
                     float blueangle = ((float)model.getNumberOfParkingPassCars()) / model.getAllSpots() * 360;
+                    float greenangle = ((float)model.getNumberOfReservationCars()) / model.getAllSpots() * 360;
 
                     String adhocNumber = "<html><font color='red'>" + model.getNumberOfAdHocCars() + "</font></html>";
                     String passNumber = "<html><font color='blue'>"+ model.getNumberOfParkingPassCars() + "</font></html>";
@@ -53,7 +54,7 @@ public class InfoModel extends BaseModel {
                     InfoView.Graph graph = view.getGraph();
                     graph.setRedAngle((int)redangle);
                     graph.setBlueAngle((int)blueangle);
-                    //graph.setGreenAngle(model.getNumberOfReservationCars() / model.getAllSpots() * 360);
+                    graph.setGreenAngle((int)greenangle);
                     graph.setAdHocNumber(adhocNumber);
                     graph.setPassNumber(passNumber);
                     graph.setReservationNumber(reservationNumber);

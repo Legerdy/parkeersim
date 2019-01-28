@@ -7,6 +7,7 @@ import java.util.Random;
 public class SimulatorModel extends BaseModel {
     private static final String AD_HOC = "1";
     private static final String PASS = "2";
+    private static final String RES = "3";
 
     private boolean isPaused = false;
 
@@ -14,6 +15,7 @@ public class SimulatorModel extends BaseModel {
 
     private CarQueue entranceCarQueue;
     private CarQueue entrancePassQueue;
+    private CarQueue entranceReservationQueue;
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
 
@@ -32,6 +34,8 @@ public class SimulatorModel extends BaseModel {
     int weekendArrivals = 200; // average number of arriving cars per hour
     int weekDayPassArrivals= 50; // average number of arriving cars per hour
     int weekendPassArrivals = 5; // average number of arriving cars per hour
+    int weekDayReservationArrivals = 20;
+    int weekendReservationArrivals = 20;
 
     int enterSpeed = 4; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
@@ -40,6 +44,7 @@ public class SimulatorModel extends BaseModel {
     public SimulatorModel(GarageModel garagemodel) {
         entranceCarQueue = new CarQueue();
         entrancePassQueue = new CarQueue();
+        entranceReservationQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
         this.garagemodel = garagemodel;
@@ -153,6 +158,7 @@ public class SimulatorModel extends BaseModel {
         carsArriving();
         carsEntering(entrancePassQueue);
         carsEntering(entranceCarQueue);
+        carsEntering(entranceReservationQueue);
     }
 
     private void handleExit(){
@@ -175,6 +181,8 @@ public class SimulatorModel extends BaseModel {
         addArrivingCars(numberOfCars, AD_HOC);
         numberOfCars=getNumberOfCars(weekDayPassArrivals, weekendPassArrivals);
         addArrivingCars(numberOfCars, PASS);
+        numberOfCars=getNumberOfCars(weekDayReservationArrivals, weekendReservationArrivals);
+        addArrivingCars(numberOfCars, RES);
     }
 
     /**
@@ -186,7 +194,7 @@ public class SimulatorModel extends BaseModel {
         // Remove car from the front of the queue and assign to a parking space.
         while (queue.carsInQueue()>0 && i<enterSpeed) {
             Car car = queue.removeCar();
-            if(car.getHasToPay() == false && garagemodel.getNumberOfOpenParkingPassSpots()>0){
+            if(car.getTypeid() == 1 && garagemodel.getNumberOfOpenParkingPassSpots()>0){
                 Location freeLocation = garagemodel.getFirstFreeParkingPassLocation();
                 garagemodel.setCarAt(freeLocation, car);
                 i++;
@@ -220,7 +228,11 @@ public class SimulatorModel extends BaseModel {
             Car car = paymentCarQueue.removeCar();
             double priceRounded = Math.round(car.getStayTime() * 0.025 * 100);
             double price = priceRounded/100;
-            money += price;
+            if(car.getTypeid() == 2){
+                money += price * 1.5;
+            } else {
+                money += price;
+            }
             carLeavesSpot(car);
             i++;
         }
@@ -265,6 +277,11 @@ public class SimulatorModel extends BaseModel {
             case PASS:
                 for (int i = 0; i < numberOfCars; i++) {
                     entrancePassQueue.addCar(new ParkingPassCar());
+                }
+                break;
+            case RES:
+                for (int i = 0; i < numberOfCars; i++) {
+                    entranceReservationQueue.addCar(new ReservationCar());
                 }
                 break;
         }
