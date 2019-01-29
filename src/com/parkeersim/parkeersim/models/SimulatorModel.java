@@ -32,12 +32,12 @@ public class SimulatorModel extends BaseModel {
 
     int weekDayArrivals= 130; // average number of arriving cars per hour
     int weekendArrivals = 220; // average number of arriving cars per hour
-    int weekDayPassArrivals= 50; // average number of arriving cars per hour
-    int weekendPassArrivals = 70; // average number of arriving cars per hour
-    int weekDayReservationArrivals = 20;
-    int weekendReservationArrivals = 25;
+    int weekDayPassArrivals= 60; // average number of arriving cars per hour
+    int weekendPassArrivals = 75; // average number of arriving cars per hour
+    int weekDayReservationArrivals = 30;
+    int weekendReservationArrivals = 35;
 
-    int enterSpeed = 4; // number of cars that can enter per minute
+    int enterSpeed = 3; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
     int exitSpeed = 5; // number of cars that can leave per minute
 
@@ -60,6 +60,7 @@ public class SimulatorModel extends BaseModel {
                         e.printStackTrace();
                     }
                 } else {
+                    System.out.println(entranceCarQueue.carsInQueue());
                     tick();
                 }
             }
@@ -84,6 +85,7 @@ public class SimulatorModel extends BaseModel {
         advanceTime();
         handleExit();
         updateViews();
+        payExpanses();
         // Pause.
         try {
             Thread.sleep(tickPause);
@@ -91,6 +93,10 @@ public class SimulatorModel extends BaseModel {
             e.printStackTrace();
         }
         handleEntrance();
+    }
+
+    private void payExpanses(){
+        
     }
 
     public int getWeek() {
@@ -197,8 +203,10 @@ public class SimulatorModel extends BaseModel {
     private void carsEntering(CarQueue queue){
         int i=0;
         // Remove car from the front of the queue and assign to a parking space.
-        while (queue.carsInQueue()>0 && i<enterSpeed) {
+        while (queue.carsInQueue()>0 && i<enterSpeed)
+        {
             Car car = queue.removeCar();
+            System.out.println(car.getStayTime());
             if(car.getTypeid() == 1 && garagemodel.getNumberOfOpenParkingPassSpots()>0){
                 Location freeLocation = garagemodel.getFirstFreeParkingPassLocation();
                 garagemodel.setCarAt(freeLocation, car);

@@ -7,6 +7,7 @@ public abstract class Car {
     private Location location;
     private int minutesLeft;
     private int stayTime;
+    private int maxWaitTime;
     private boolean isPaying;
     private boolean hasToPay;
     private int typeid;
@@ -33,6 +34,14 @@ public abstract class Car {
     public void setMinutesLeft(int minutesLeft) {
         this.minutesLeft = minutesLeft;
         this.stayTime = minutesLeft;
+    }
+
+    public void setWaitTime(int time){
+        this.maxWaitTime = time;
+    }
+
+    public int getWaitTime(){
+        return this.maxWaitTime;
     }
 
     public int getStayTime(){
