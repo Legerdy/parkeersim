@@ -28,6 +28,7 @@ public class InfoModel extends BaseModel {
                     String minute = "Minute: " + model.getMinute();
                     String hour = "Hour: " + model.getHour();
                     String day = "Day: " + model.getDay();
+                    String week = "Week: " + model.getWeek();
                     String balance = "Balance: €" + balanceRound/100;
                     String parkingPassSpots = "Free parking pass spots : " + model.getOpenParkingPassSpots();
                     String parkingSpots = "Free normal parking spots : " + ((float)model.getOpenSpots());
@@ -36,6 +37,7 @@ public class InfoModel extends BaseModel {
                     view.minute(minute);
                     view.hour(hour);
                     view.day(day);
+                    view.week(week);
                     view.balance(balance);
                     view.parkingPassSpots(parkingPassSpots);
                     view.parkingSpots(parkingSpots);

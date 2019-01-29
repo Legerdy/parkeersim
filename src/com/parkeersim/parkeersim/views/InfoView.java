@@ -13,6 +13,7 @@ public class InfoView extends BaseView {
     private Graph graphPanel = new Graph();
 
     private JPanel timePanel = new JPanel();
+    private JLabel weeklabel = new JLabel();
     private JLabel minutelabel = new JLabel();
     private JLabel hourlabel = new JLabel();
     private JLabel daylabel = new JLabel();
@@ -38,6 +39,7 @@ public class InfoView extends BaseView {
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.PAGE_AXIS));
 
         infoPanel.add(timePanel, BorderLayout.PAGE_START);
+        timePanel.add(weeklabel);
         timePanel.add(daylabel);
         timePanel.add(hourlabel);
         timePanel.add(minutelabel);
@@ -67,6 +69,8 @@ public class InfoView extends BaseView {
     public void setFrameVisible(boolean state){
         frame.setVisible(state);
     }
+
+    public void week(String string) { weeklabel.setText(string); }
 
     public void minute(String string){
         minutelabel.setText(string);
