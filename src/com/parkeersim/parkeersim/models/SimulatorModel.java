@@ -22,6 +22,7 @@ public class SimulatorModel extends BaseModel {
     private int day = 0;
     private int hour = 0;
     private int minute = 0;
+    private int week = 0;
 
     private int tickPause = 100;
 
@@ -93,6 +94,10 @@ public class SimulatorModel extends BaseModel {
         handleEntrance();
     }
 
+    public int getWeek() {
+        return week;
+    }
+
     public int getDay(){
         return day;
     }
@@ -150,6 +155,7 @@ public class SimulatorModel extends BaseModel {
         }
         while (day > 6) {
             day -= 7;
+            week++;
         }
 
     }
