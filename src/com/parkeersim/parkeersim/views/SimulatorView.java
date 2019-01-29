@@ -52,12 +52,14 @@ public class SimulatorView extends BaseView {
         JLabel reservationCar = new JLabel("<html><font color='#00ff00'>■</font> = Reservation Car</html>");
         JLabel parkingSpace = new JLabel("<html><font color='white'>■</font> = Free Parking Space</html>");
         JLabel passSpace = new JLabel("<html><font color='#8c8c8c'>■</font> = Free Parking Pass Space</html>");
+        JLabel reservedSpace = new JLabel("<html><font color='black'>■</font> = Reserved Parking Space</html>");
         legendPanel.add(legend);
         legendPanel.add(adhocCar);
         legendPanel.add(parkingpassCar);
         legendPanel.add(reservationCar);
         legendPanel.add(parkingSpace);
         legendPanel.add(passSpace);
+        legendPanel.add(reservedSpace);
 
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 

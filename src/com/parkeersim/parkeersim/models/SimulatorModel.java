@@ -27,11 +27,10 @@ public class SimulatorModel extends BaseModel {
 
     private double money;
 
-    //todo: atm komen er te veel normale auto's binnen waardoor de queue zo vol komt dat hij nooit meer omlaag gaat
     //todo: als auto's te lang in de queue staan kunnen ze weg gaan
 
-    int weekDayArrivals= 150; // average number of arriving cars per hour
-    int weekendArrivals = 300; // average number of arriving cars per hour
+    int weekDayArrivals= 130; // average number of arriving cars per hour
+    int weekendArrivals = 220; // average number of arriving cars per hour
     int weekDayPassArrivals= 50; // average number of arriving cars per hour
     int weekendPassArrivals = 70; // average number of arriving cars per hour
     int weekDayReservationArrivals = 20;

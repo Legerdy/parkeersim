@@ -150,7 +150,7 @@ public class InfoView extends BaseView {
         public Graph(){
             JPanel panel = new JPanel();
 
-            JLabel label = new JLabel("Auto's in de garage:");
+            JLabel label = new JLabel("Cars in the garage:");
             label.setFont(new Font("SansSerif", Font.BOLD, 14));
 
             setLayout(null);
