@@ -30,14 +30,14 @@ public class SimulatorModel extends BaseModel {
 
     //todo: als auto's te lang in de queue staan kunnen ze weg gaan
 
-    int weekDayArrivals= 130; // average number of arriving cars per hour
-    int weekendArrivals = 250; // average number of arriving cars per hour
+    int weekDayArrivals= 110; // average number of arriving cars per hour
+    int weekendArrivals = 220; // average number of arriving cars per hour
     int weekDayPassArrivals= 60; // average number of arriving cars per hour
-    int weekendPassArrivals = 80; // average number of arriving cars per hour
+    int weekendPassArrivals = 75; // average number of arriving cars per hour
     int weekDayReservationArrivals = 30;
     int weekendReservationArrivals = 40;
 
-    int enterSpeed = 3; // number of cars that can enter per minute
+    int enterSpeed = 4; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
     int exitSpeed = 5; // number of cars that can leave per minute
 
