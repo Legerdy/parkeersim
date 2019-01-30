@@ -30,6 +30,7 @@ public class InfoModel extends BaseModel {
                     String day = "Day: " + model.getDay();
                     String week = "Week: " + model.getWeek();
                     String balance = "Balance: €" + balanceRound/100;
+                    String expanses = "Expanses: €" + model.getExpanses();
                     String parkingPassSpots = "Free parking pass spots : " + model.getOpenParkingPassSpots();
                     String parkingSpots = "Free normal parking spots : " + model.getOpenSpots();
                     String simulationSpeed = "Simulation speed : " + model.getTickPause();
@@ -39,6 +40,7 @@ public class InfoModel extends BaseModel {
                     view.day(day);
                     view.week(week);
                     view.balance(balance);
+                    view.expanses(expanses);
                     view.parkingPassSpots(parkingPassSpots);
                     view.parkingSpots(parkingSpots);
                     view.simulationSpeed(simulationSpeed);

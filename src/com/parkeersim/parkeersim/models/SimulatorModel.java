@@ -13,6 +13,11 @@ public class SimulatorModel extends BaseModel {
 
     private GarageModel garagemodel;
 
+    private int workers = 5;
+    private int salary = 8;
+    private int energycost = 2;
+    private int expanses = 0;
+
     private CarQueue entranceCarQueue;
     private CarQueue entrancePassQueue;
     private CarQueue entranceReservationQueue;
@@ -96,7 +101,10 @@ public class SimulatorModel extends BaseModel {
     }
 
     private void payExpanses(){
+        int expenses = ((workers * salary + energycost)/10);
 
+        expanses = expanses + expenses;
+        money = money - expenses;
     }
 
     public int getWeek() {
@@ -117,6 +125,10 @@ public class SimulatorModel extends BaseModel {
 
     public double getBalance(){
         return money;
+    }
+
+    public int getExpanses() {
+        return expanses;
     }
 
     public int getOpenParkingPassSpots(){
@@ -153,14 +165,20 @@ public class SimulatorModel extends BaseModel {
         while (minute > 59) {
             minute -= 60;
             hour++;
+
+
+
         }
         while (hour > 23) {
             hour -= 24;
             day++;
+
+
         }
         while (day > 6) {
             day -= 7;
             week++;
+
         }
 
     }

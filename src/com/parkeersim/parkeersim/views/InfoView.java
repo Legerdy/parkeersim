@@ -21,6 +21,9 @@ public class InfoView extends BaseView {
     private JPanel balancePanel = new JPanel();
     private JLabel balanceLabel = new JLabel();
 
+    private JPanel expansesPanel = new JPanel();
+    private JLabel expansesLabel= new JLabel();
+
     private JPanel parkingSpotsPanel = new JPanel();
     private JLabel openParkingPassSpots = new JLabel();
     private JLabel openParkingSpots = new JLabel();
@@ -47,6 +50,10 @@ public class InfoView extends BaseView {
 
         infoPanel.add(balancePanel);
         balancePanel.add(balanceLabel);
+        balancePanel.setBackground(Color.decode("#828282"));
+
+        infoPanel.add(expansesPanel);
+        expansesPanel.add(expansesLabel);
         balancePanel.setBackground(Color.decode("#828282"));
 
         infoPanel.add(parkingSpotsPanel);
@@ -98,6 +105,10 @@ public class InfoView extends BaseView {
 
     public void balance(String string){
         balanceLabel.setText(string);
+    }
+
+    public void expanses(String string) {
+        expansesLabel.setText(string);
     }
 
     public class Graph extends JPanel{
