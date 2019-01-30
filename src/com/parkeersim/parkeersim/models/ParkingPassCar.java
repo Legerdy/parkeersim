@@ -12,7 +12,7 @@ public class ParkingPassCar extends Car {
         int waitTime = (int)(5 + (random.nextFloat() * 60));
         this.setWaitTime(waitTime);
         this.setMinutesLeft(stayMinutes);
-        this.setHasToPay(false);
+        this.setHasToPay(true);
         this.setTypeid(1);
     }
     

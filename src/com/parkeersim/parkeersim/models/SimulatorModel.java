@@ -13,10 +13,18 @@ public class SimulatorModel extends BaseModel {
 
     private GarageModel garagemodel;
 
-    private int workers = 5;
-    private int salary = 8;
+    private int workers = 10;
+    private int salary = 15;
     private int energycost = 2;
+
     private int expanses = 0;
+    private double taxes = 0.42;
+    private double weeklyIncome = 0;
+    private double tempWeeklyIncome = 0;
+    private double totalTaxes = 0;
+    private double revenue = 0;
+
+
 
     private CarQueue entranceCarQueue;
     private CarQueue entrancePassQueue;
@@ -90,7 +98,7 @@ public class SimulatorModel extends BaseModel {
         advanceTime();
         handleExit();
         updateViews();
-        payExpanses();
+
         // Pause.
         try {
             Thread.sleep(tickPause);
@@ -101,10 +109,17 @@ public class SimulatorModel extends BaseModel {
     }
 
     private void payExpanses(){
-        int expenses = ((workers * salary + energycost)/10);
+        int expenses = (7*24*(workers * salary + energycost));
+        double tax = weeklyIncome * taxes;
 
-        expanses = expanses + expenses;
-        money = money - expenses;
+        tempWeeklyIncome = weeklyIncome;
+        expanses = expanses + expenses + (int)tax;
+        totalTaxes += tax;
+        revenue += (tempWeeklyIncome - expenses - (int)tax);
+        money = money - expenses - tax;
+
+
+
     }
 
     public int getWeek() {
@@ -130,6 +145,20 @@ public class SimulatorModel extends BaseModel {
     public int getExpanses() {
         return expanses;
     }
+
+    public double getTotalTaxes() {
+        return totalTaxes;
+    }
+
+    public int getRevenue() {
+        return (int)revenue;
+    }
+
+    public int getTempWeeklyIncome() {
+        return (int)tempWeeklyIncome;
+    }
+
+
 
     public int getOpenParkingPassSpots(){
         return garagemodel.getNumberOfOpenParkingPassSpots();
@@ -178,6 +207,11 @@ public class SimulatorModel extends BaseModel {
         while (day > 6) {
             day -= 7;
             week++;
+
+            if(money >= 500 && week > 0 && day == 0) {
+                payExpanses();
+                weeklyIncome = 0;
+            }
 
         }
 
@@ -259,8 +293,15 @@ public class SimulatorModel extends BaseModel {
                 double price = priceRounded/100;
                 if(car.getTypeid() == 2){
                     money += price * 1.5;
-                } else {
+                    weeklyIncome += (price * 1.5);
+                }
+                else if(car.getTypeid() ==1){
+                    money += price * 1.25;
+                    weeklyIncome += (price * 1.25);
+                }
+                else {
                     money += price;
+                    weeklyIncome += (price);
                 }
                 carLeavesSpot(car);
                 i++;

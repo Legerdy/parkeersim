@@ -20,9 +20,12 @@ public class InfoView extends BaseView {
 
     private JPanel balancePanel = new JPanel();
     private JLabel balanceLabel = new JLabel();
+    private JLabel revenueLabel = new JLabel();
 
     private JPanel expansesPanel = new JPanel();
     private JLabel expansesLabel= new JLabel();
+    private JLabel taxesLabel = new JLabel();
+    private JLabel incomeLabel = new JLabel();
 
     private JPanel parkingSpotsPanel = new JPanel();
     private JLabel openParkingPassSpots = new JLabel();
@@ -50,11 +53,14 @@ public class InfoView extends BaseView {
 
         infoPanel.add(balancePanel);
         balancePanel.add(balanceLabel);
+        balancePanel.add(incomeLabel);
+        balancePanel.add(revenueLabel);
         balancePanel.setBackground(Color.decode("#828282"));
 
         infoPanel.add(expansesPanel);
         expansesPanel.add(expansesLabel);
-        balancePanel.setBackground(Color.decode("#828282"));
+        expansesPanel.add(taxesLabel);
+        expansesPanel.setBackground(Color.decode("#828282"));
 
         infoPanel.add(parkingSpotsPanel);
         parkingSpotsPanel.add(openParkingPassSpots);
@@ -109,6 +115,18 @@ public class InfoView extends BaseView {
 
     public void expanses(String string) {
         expansesLabel.setText(string);
+    }
+
+    public void income(String string) {
+        incomeLabel.setText(string);
+    }
+
+    public void taxes(String string) {
+        taxesLabel.setText(string);
+    }
+
+    public void revenue(String string) {
+        revenueLabel.setText(string);
     }
 
     public class Graph extends JPanel{
