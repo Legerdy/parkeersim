@@ -27,8 +27,8 @@ public class GuiModel extends BaseModel {
     }
 
     public void addTickPause(){
-        if(simmodel.getTickPause() == 1){
-            simmodel.setTickPause(5);
+        if(simmodel.getTickPause() < 5){
+            simmodel.setTickPause(simmodel.getTickPause() + 1);
         } else {
             simmodel.setTickPause(simmodel.getTickPause() + 5);
         }
@@ -37,8 +37,8 @@ public class GuiModel extends BaseModel {
     public void subtractTickPause(){
         if(simmodel.getTickPause() > 6){
             simmodel.setTickPause(simmodel.getTickPause() - 5);
-        } else {
-            simmodel.setTickPause(1);
+        } else if(simmodel.getTickPause() > 0) {
+            simmodel.setTickPause(simmodel.getTickPause() - 1);
         }
     }
 
