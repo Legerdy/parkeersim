@@ -24,6 +24,9 @@ public class SimulatorView extends BaseView {
     private InfoView infoview;
     private InfoModel infomodel;
 
+    /**
+     * creates the view of the parking simulator program
+     */
     public SimulatorView(){
         garageview = new GarageView();
         garagemodel = new GarageModel(3, 4, 50);
@@ -75,11 +78,19 @@ public class SimulatorView extends BaseView {
         setVisible(true);
     }
 
+    /**
+     * ...
+     */
     public void notifyGarageView(){
         garagemodel.notifyView();
         simulator.run();
     }
 
+    /**
+     * ...
+     *
+     * @param model
+     */
     @Override
     public void update(BaseModel model){
 
