@@ -36,7 +36,7 @@ public class InfoModel extends BaseModel {
                     String weeklyIncome = "Income of last week: " + model.getTempWeeklyIncome();
                     String parkingPassSpots = "Free parking pass spots : " + model.getOpenParkingPassSpots();
                     String parkingSpots = "Free normal parking spots : " + model.getOpenSpots();
-                    String simulationSpeed = "Simulation speed : " + model.getTickPause();
+                    String simulationSpeed = "Simulation pause : " + model.getTickPause();
 
                     view.minute(minute);
                     view.hour(hour);
