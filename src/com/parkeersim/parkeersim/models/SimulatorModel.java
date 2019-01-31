@@ -181,21 +181,20 @@ public class SimulatorModel extends BaseModel {
         return getOpenParkingPassSpots() + getOpenSpots();
     }
 
+    public int getAngryCustomers(){
+        return angryCustomers;
+    }
+
     private void advanceTime(){
         // Advance the time by one minute.
         minute++;
         while (minute > 59) {
             minute -= 60;
             hour++;
-
-
-
         }
         while (hour > 23) {
             hour -= 24;
             day++;
-
-
         }
         while (day > 6) {
             day -= 7;
@@ -266,6 +265,7 @@ public class SimulatorModel extends BaseModel {
             Car car = (Car)cars.next();
             if(car.getQueueTime() > car.getMaxWaitTime()){
                 removeCars.add(car);
+                angryCustomers++;
             } else {
                 car.tickQueueTime();
             }

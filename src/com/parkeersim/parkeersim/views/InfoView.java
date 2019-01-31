@@ -31,6 +31,9 @@ public class InfoView extends BaseView {
     private JLabel openParkingPassSpots = new JLabel();
     private JLabel openParkingSpots = new JLabel();
 
+    private JPanel angryPanel = new JPanel();
+    private JLabel angryCustomers = new JLabel();
+
     private JPanel simulationSpeedPanel = new JPanel();
     private JLabel simulationSpeed = new JLabel();
 
@@ -59,12 +62,16 @@ public class InfoView extends BaseView {
         infoPanel.add(expansesPanel);
         expansesPanel.add(expansesLabel);
         expansesPanel.add(taxesLabel);
-        expansesPanel.setBackground(Color.decode("#828282"));
+        expansesPanel.setBackground(Color.decode("#8c8c8c"));
 
         infoPanel.add(parkingSpotsPanel);
         parkingSpotsPanel.add(openParkingPassSpots);
         parkingSpotsPanel.add(openParkingSpots);
-        parkingSpotsPanel.setBackground(Color.decode("#8c8c8c"));
+        parkingSpotsPanel.setBackground(Color.decode("#828282"));
+
+        infoPanel.add(angryPanel);
+        angryPanel.add(angryCustomers);
+        angryPanel.setBackground(Color.decode("#8c8c8c"));
 
         infoPanel.add(simulationSpeedPanel, BorderLayout.PAGE_END);
         simulationSpeedPanel.add(simulationSpeed);
@@ -126,6 +133,10 @@ public class InfoView extends BaseView {
 
     public void revenue(String string) {
         revenueLabel.setText(string);
+    }
+
+    public void angryCustomers(String string){
+        angryCustomers.setText(string);
     }
 
     public class Graph extends JPanel{

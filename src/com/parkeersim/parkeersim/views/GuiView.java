@@ -40,10 +40,10 @@ public class GuiView extends BaseView {
         add(openinfo);
 
         //buttons for changing simulation speed
-        JButton addspeed = new JButton("Higher Simulation Pause");
+        JButton addspeed = new JButton("Lower Simulation Speed");
         addspeed.addActionListener( (e) -> notifyController(3));
         add(addspeed);
-        JButton removespeed = new JButton("Lower Simulation Pause");
+        JButton removespeed = new JButton("Higher Simulation Speed");
         removespeed.addActionListener( (e) -> notifyController(4));
         add(removespeed);
     }
