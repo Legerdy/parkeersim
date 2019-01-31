@@ -1,10 +1,15 @@
 package com.parkeersim.parkeersim;
 
-import com.parkeersim.parkeersim.views.SimulatorView;
+        import com.parkeersim.parkeersim.views.SimulatorView;
 
-import javax.swing.*;
+        import javax.swing.*;
 
 public class SimulatorMain {
+    /**
+     * main method of this project
+     *
+     * @param args
+     */
     public static void main(String[] args){
         JFrame frame = new JFrame();
         frame.setTitle("Parking Simulator");
