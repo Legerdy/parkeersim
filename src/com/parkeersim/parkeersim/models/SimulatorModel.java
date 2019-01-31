@@ -17,9 +17,9 @@ public class SimulatorModel extends BaseModel {
 
     private int workers = 10;
     private int salary = 15;
-    private int energycost = 2;
+    private static final int energycost = 2;
     private int expanses = 0;
-    private double taxes = 0.42;
+    private static final double taxes = 0.42;
     private double weeklyIncome = 0;
     private double tempWeeklyIncome = 0;
     private double totalTaxes = 0;
@@ -43,13 +43,13 @@ public class SimulatorModel extends BaseModel {
     private double money;
 
     int weekDayArrivals= 110; // average number of arriving cars per hour
-    int weekendArrivals = 220; // average number of arriving cars per hour
+    int weekendArrivals = 262; // average number of arriving cars per hour
     int weekDayPassArrivals= 60; // average number of arriving cars per hour
     int weekendPassArrivals = 75; // average number of arriving cars per hour
     int weekDayReservationArrivals = 30;
     int weekendReservationArrivals = 40;
 
-    int enterSpeed = 3; // number of cars that can enter per minute
+    int enterSpeed = 4; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
     int exitSpeed = 5; // number of cars that can leave per minute
 
@@ -199,14 +199,11 @@ public class SimulatorModel extends BaseModel {
         while (day > 6) {
             day -= 7;
             week++;
-
             if(money >= 500 && week > 0 && day == 0) {
                 payExpanses();
                 weeklyIncome = 0;
             }
-
         }
-
     }
 
     private void handleEntrance(){
@@ -302,7 +299,7 @@ public class SimulatorModel extends BaseModel {
                     money += price * 1.5;
                     weeklyIncome += (price * 1.5);
                 }
-                else if(car.getTypeId() ==1){
+                else if(car.getTypeId() == 1){
                     money += price * 1.25;
                     weeklyIncome += (price * 1.25);
                 }

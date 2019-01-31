@@ -15,7 +15,6 @@ public class CarQueue {
     }
 
     public void removeSpecificCar(Car car){
-        System.out.println("Car " + car.hashCode() + " couldn't wait any longer and left");
         queue.remove(car);
     }
 

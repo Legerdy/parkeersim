@@ -75,7 +75,7 @@ public class GarageView extends BaseView{
                         Color color = Color.black;
                         drawPlace(graphics, location, color);
                     } else {
-                        Color color = car == null ? Color.white : car.getColor();
+                        Color color = car == null ? Color.decode("#c6c6c6") : car.getColor();
                         drawPlace(graphics, location, color);
                     }
                 }
