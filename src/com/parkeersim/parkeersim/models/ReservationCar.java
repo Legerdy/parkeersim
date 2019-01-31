@@ -14,7 +14,7 @@ public class ReservationCar extends Car{
         this.setWaitTime(waitTime);
         this.setMinutesLeft(stayMinutes);
         this.setHasToPay(true);
-        this.setTypeid(2);
+        this.setTypeId(2);
     }
     public Color getColor() {return COLOR;}
 }

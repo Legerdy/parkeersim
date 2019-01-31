@@ -38,7 +38,6 @@ public class InfoView extends BaseView {
 
     public InfoView(){
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //frame.setLayout(new FlowLayout());
         frame.setSize(500,450);
         frame.setLocation(982,0);
 

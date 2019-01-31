@@ -71,7 +71,7 @@ public class GarageView extends BaseView{
                     if(car == null && floor == 0 && row == 0){
                         Color color = Color.decode("#8c8c8c");
                         drawPlace(graphics, location, color);
-                    } else if(car != null && car.getTypeid() == 2 && car.getStayTime() - car.getMinutesLeft() < 16){
+                    } else if(car != null && car.getTypeId() == 2 && car.getStayTime() - car.getMinutesLeft() < 16){
                         Color color = Color.black;
                         drawPlace(graphics, location, color);
                     } else {

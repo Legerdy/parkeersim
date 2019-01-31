@@ -8,9 +8,10 @@ public abstract class Car {
     private int minutesLeft;
     private int stayTime;
     private int maxWaitTime;
+    private int queueTime;
     private boolean isPaying;
     private boolean hasToPay;
-    private int typeid;
+    private int typeId;
 
     /**
      * Constructor for objects of class Car
@@ -40,7 +41,7 @@ public abstract class Car {
         this.maxWaitTime = time;
     }
 
-    public int getWaitTime(){
+    public int getMaxWaitTime(){
         return this.maxWaitTime;
     }
 
@@ -56,12 +57,20 @@ public abstract class Car {
         this.isPaying = isPaying;
     }
 
-    public void setTypeid(int id){
-        this.typeid = id;
+    public void tickQueueTime(){
+        queueTime++;
     }
 
-    public int getTypeid(){
-        return this.typeid;
+    public int getQueueTime(){
+        return queueTime;
+    }
+
+    public void setTypeId(int id){
+        this.typeId = id;
+    }
+
+    public int getTypeId(){
+        return this.typeId;
     }
 
     public boolean getHasToPay() {

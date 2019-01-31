@@ -67,7 +67,7 @@ public class GarageModel extends BaseModel {
             } else {
                 numberOfOpenSpots--;
             }
-            switch(car.getTypeid()){
+            switch(car.getTypeId()){
                 case 0:
                     numberOfAdHocCars++;
                     break;
@@ -98,7 +98,7 @@ public class GarageModel extends BaseModel {
         } else {
             numberOfOpenSpots++;
         }
-        switch(car.getTypeid()){
+        switch(car.getTypeId()){
             case 0:
                 numberOfAdHocCars--;
                 break;
