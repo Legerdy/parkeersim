@@ -2,6 +2,11 @@ package com.parkeersim.parkeersim.models;
 
 import com.parkeersim.mvc.BaseModel;
 
+/**
+ * @author Joost Blaauwwiekel, Daan Alssema, Dylan hasperhoven, Joris Rijs
+ * @version 4.19
+ */
+
 public class GuiModel extends BaseModel {
     private boolean simPaused;
     private boolean infoVisible;
@@ -36,7 +41,7 @@ public class GuiModel extends BaseModel {
     }
 
     /**
-     * ...
+     * This method adds a tickpause to the simulation, which makes the simulation run slower
      */
     public void addTickPause(){
         if(simmodel.getTickPause() < 5){
@@ -47,7 +52,7 @@ public class GuiModel extends BaseModel {
     }
 
     /**
-     * ...
+     * This method subtracts a certain amount of the the tickpause, which means the simulation will run faster
      */
     public void subtractTickPause(){
         if(simmodel.getTickPause() > 6){
