@@ -7,6 +7,8 @@ import com.parkeersim.mvc.BaseView;
 import com.parkeersim.parkeersim.models.GarageModel;
 
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GarageView extends BaseView{
     private Dimension size;
@@ -56,29 +58,41 @@ public class GarageView extends BaseView{
      * Draws parking spots depending on the amount of floors, rows and places
      */
     public void updateView(BaseModel model) {
-        GarageModel garagemodel = (GarageModel) model;
+        GarageModel garageModel = (GarageModel) model;
         // Create a new car park image if the size has changed.
         if (!size.equals(getSize())) {
             size = getSize();
             carParkImage = createImage(size.width, size.height);
         }
         Graphics graphics = carParkImage.getGraphics();
-        for(int floor = 0; floor < garagemodel.getNumberOfFloors(); floor++) {
-            for(int row = 0; row < garagemodel.getNumberOfRows(); row++) {
-                for(int place = 0; place < garagemodel.getNumberOfPlaces(); place++) {
+        int passPlaces = garageModel.getPassPlaces();
+        Map<Integer, Location> locations = new HashMap<>();
+
+        Integer i = new Integer(0);
+        for (int floor = 0; floor < garageModel.getNumberOfFloors(); floor++) {
+            for (int row = 0; row < garageModel.getNumberOfRows(); row++) {
+                for (int place = 0; place < garageModel.getNumberOfPlaces(); place++) {
+                    i++;
                     Location location = new Location(floor, row, place);
-                    Car car = garagemodel.getCarAt(location);
-                    if(car == null && floor == 0 && row == 0){
-                        Color color = Color.decode("#8c8c8c");
-                        drawPlace(graphics, location, color);
-                    } else if(car != null && car.getTypeId() == 2 && car.getStayTime() - car.getMinutesLeft() < 16){
-                        Color color = Color.black;
-                        drawPlace(graphics, location, color);
-                    } else {
-                        Color color = car == null ? Color.decode("#c6c6c6") : car.getColor();
-                        drawPlace(graphics, location, color);
-                    }
+                    locations.put(i, location);
                 }
+            }
+        }
+
+        for(Map.Entry<Integer, Location> location : locations.entrySet()){
+            Car car = garageModel.getCarAt(location.getValue());
+            if(location.getKey()<=passPlaces && car==null){
+                //parking pass place, no car
+                Color color = Color.decode("#8c8c8c");
+                drawPlace(graphics, location.getValue(), color);
+            } else if(car!=null && car.getTypeId() == 2 && car.getStayTime() - car.getMinutesLeft() < 16){
+                //reservationcar, that hasnt arrived yet
+                Color color = Color.black;
+                drawPlace(graphics, location.getValue(), color);
+            } else {
+                //others
+                Color color = car == null ? Color.decode("#c6c6c6") : car.getColor();
+                drawPlace(graphics, location.getValue(), color);
             }
         }
         repaint();

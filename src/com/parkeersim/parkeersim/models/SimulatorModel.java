@@ -11,7 +11,7 @@ public class SimulatorModel extends BaseModel {
     private static final String PASS = "2";
     private static final String RES = "3";
 
-    private boolean isPaused = false;
+    private boolean isPaused = true;
 
     private GarageModel garagemodel;
 
@@ -39,6 +39,7 @@ public class SimulatorModel extends BaseModel {
     private int week = 0;
 
     private int tickPause = 100;
+    private int passPlaces = 50;
 
     private double money;
 
@@ -165,6 +166,10 @@ public class SimulatorModel extends BaseModel {
         return garagemodel.getNumberOfRows() * garagemodel.getNumberOfFloors() * garagemodel.getNumberOfPlaces();
     }
 
+    public int getPassPlaces(){
+        return passPlaces;
+    }
+
     public int getNumberOfAdHocCars(){
         return garagemodel.getNumberOfAdHocCars();
     }
@@ -183,6 +188,11 @@ public class SimulatorModel extends BaseModel {
 
     public int getAngryCustomers(){
         return angryCustomers;
+    }
+
+    public void setPassSpaces(int amount){
+        this.passPlaces = amount;
+        garagemodel.updatePassPlaces(amount);
     }
 
     private void advanceTime(){

@@ -29,6 +29,14 @@ public abstract class BaseView extends JPanel {
         }
     }
 
+    public void notifyController(int event_id, int amount){
+        if (this.controller != null){
+            this.controller.notify(this, event_id, amount);
+        } else {
+            throw new IllegalStateException("The view has no controller");
+        }
+    }
+
     /**
      * The model uses this method to notify the view
      * @param model

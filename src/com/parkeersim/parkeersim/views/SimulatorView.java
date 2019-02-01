@@ -30,6 +30,7 @@ public class SimulatorView extends BaseView {
         garagemodel.addView(garageview);
 
         simulator = new SimulatorModel(garagemodel);
+        garagemodel.setSimulator(simulator);
 
         infoview = new InfoView();
         infomodel = new InfoModel(infoview, simulator);

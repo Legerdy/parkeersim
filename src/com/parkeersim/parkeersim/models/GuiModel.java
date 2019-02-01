@@ -3,7 +3,7 @@ package com.parkeersim.parkeersim.models;
 import com.parkeersim.mvc.BaseModel;
 
 public class GuiModel extends BaseModel {
-    private boolean simPaused;
+    private boolean simPaused = true;
     private boolean infoVisible;
 
     private SimulatorModel simmodel;
@@ -52,5 +52,9 @@ public class GuiModel extends BaseModel {
             infomodel.setVisible(true);
         }
         infomodel.notifyView();
+    }
+
+    public void setParkingSpaces(int amount){
+        simmodel.setPassSpaces(amount);
     }
 }

@@ -16,13 +16,13 @@ public class GuiView extends BaseView {
         //setLayout(new FlowLayout());
 
         //Button that starts/stops the simulation
-        JButton startstop = new JButton("Stop");
+        JButton startstop = new JButton("Start");
         startstop.addActionListener( (e) -> {
             notifyController(1);
-            if(startstop.getText() == "Stop"){
-                startstop.setText("Start");
-            } else {
+            if(startstop.getText() == "Start"){
                 startstop.setText("Stop");
+            } else {
+                startstop.setText("Start");
             }
         });
         add(startstop, BorderLayout.CENTER);
@@ -46,6 +46,17 @@ public class GuiView extends BaseView {
         JButton removespeed = new JButton("Higher Simulation Speed");
         removespeed.addActionListener( (e) -> notifyController(4));
         add(removespeed);
+
+        //buttons for changing parking pass placed
+        JLabel parkingPassLabel = new JLabel("Amount of Parking Pass Places :");
+        parkingPassLabel.setForeground(Color.white);
+        add(parkingPassLabel);
+        JTextField parkingPassPlaces = new JTextField("20", 2);
+        parkingPassPlaces.addActionListener( (e) -> {
+            int amount = Integer.valueOf(parkingPassPlaces.getText());
+            notifyController(5,amount);
+        });
+        add(parkingPassPlaces);
     }
 
     @Override

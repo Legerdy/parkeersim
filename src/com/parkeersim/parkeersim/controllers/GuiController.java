@@ -29,4 +29,14 @@ public class GuiController extends BaseController {
         }
         return false;
     }
+
+    @Override
+    public boolean event(BaseView view, int event_id, int amount){
+        GuiModel guimodel = (GuiModel)model;
+        if (event_id==5){
+            guimodel.setParkingSpaces(amount);
+            return true;
+        }
+        return false;
+    }
 }

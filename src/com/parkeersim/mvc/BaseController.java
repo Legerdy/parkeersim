@@ -22,6 +22,12 @@ public abstract class BaseController {
         }
     }
 
+    public void notify(BaseView view, int event_id, int amount){
+        if(!event(view, event_id, amount)){
+            //throw exception didn't handle event
+        }
+    }
+
     /**
      * Override to handle events
      * @param view
@@ -29,4 +35,6 @@ public abstract class BaseController {
      * @return
      */
     public abstract boolean event(BaseView view, int event_id);
+
+    public abstract boolean event(BaseView view, int event_id, int amount);
 }
