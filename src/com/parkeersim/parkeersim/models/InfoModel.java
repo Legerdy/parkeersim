@@ -38,6 +38,7 @@ public class InfoModel extends BaseModel {
                     String parkingSpots = "Free normal parking spots : " + model.getOpenSpots();
                     String simulationSpeed = "Simulation speed : " + (100 - model.getTickPause());
                     String angryCustomers = "Amount of angry customers : " + model.getAngryCustomers();
+                    String lostRevenue = "Lost revenue: €" + model.getLostRevenue();
 
                     view.minute(minute);
                     view.hour(hour);
@@ -52,6 +53,7 @@ public class InfoModel extends BaseModel {
                     view.parkingSpots(parkingSpots);
                     view.simulationSpeed(simulationSpeed);
                     view.angryCustomers(angryCustomers);
+                    view.lostRevenue(lostRevenue);
 
                     //Infoview graph
                     float redangle = ((float)model.getNumberOfAdHocCars()) / model.getAllSpots() * 360;
