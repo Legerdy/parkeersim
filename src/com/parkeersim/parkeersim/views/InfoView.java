@@ -33,6 +33,7 @@ public class InfoView extends BaseView {
 
     private JPanel angryPanel = new JPanel();
     private JLabel angryCustomers = new JLabel();
+    private JLabel lostRevenue = new JLabel();
 
     private JPanel simulationSpeedPanel = new JPanel();
     private JLabel simulationSpeed = new JLabel();
@@ -71,6 +72,7 @@ public class InfoView extends BaseView {
 
         infoPanel.add(angryPanel);
         angryPanel.add(angryCustomers);
+        angryPanel.add(lostRevenue);
         angryPanel.setBackground(Color.decode("#8c8c8c"));
 
         infoPanel.add(simulationSpeedPanel, BorderLayout.PAGE_END);
@@ -137,6 +139,10 @@ public class InfoView extends BaseView {
 
     public void angryCustomers(String string){
         angryCustomers.setText(string);
+    }
+
+    public void lostRevenue (String string){
+        lostRevenue.setText(string);
     }
 
     public class Graph extends JPanel{
