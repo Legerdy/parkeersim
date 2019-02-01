@@ -1,3 +1,10 @@
+/**
+ * GuiController of the project
+ * this class handles the GUI and events
+ *
+ * @author Joost Blaauwwiekel, Daan Alssema, Dylan hasperhoven, Joris Rijs
+ * @version 4.19
+ */
 package com.parkeersim.parkeersim.controllers;
 
 import com.parkeersim.mvc.BaseController;

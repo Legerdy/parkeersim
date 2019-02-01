@@ -1,3 +1,9 @@
+/**
+ * BaseView of the project
+ *
+ * @author Joost Blaauwwiekel, Daan Alssema, Dylan hasperhoven, Joris Rijs
+ * @version 4.19
+ */
 package com.parkeersim.mvc;
 
 import javax.swing.*;

@@ -1,3 +1,10 @@
+/**
+ * BaseController of the project
+ *
+ * @author Joris Rijs, Daan Alssema, Dylan Hasperhoven, Joost Blaauwwiekel
+ * @version 4.19
+ *
+ */
 package com.parkeersim.mvc;
 
 public abstract class BaseController {
