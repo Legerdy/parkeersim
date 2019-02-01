@@ -6,13 +6,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
-//this is a comment
 public class SimulatorModel extends BaseModel {
     private static final String AD_HOC = "1";
     private static final String PASS = "2";
     private static final String RES = "3";
 
-    private boolean isPaused = false;
+    private boolean isPaused = true;
 
     private GarageModel garagemodel;
 
@@ -27,7 +26,6 @@ public class SimulatorModel extends BaseModel {
     private double revenue = 0;
 
     private int angryCustomers = 0;
-    private int lostRevenue = 0;
 
     private CarQueue entranceCarQueue;
     private CarQueue entrancePassQueue;
@@ -41,6 +39,8 @@ public class SimulatorModel extends BaseModel {
     private int week = 0;
 
     private int tickPause = 100;
+    private int passPlaces = 50;
+    private int amount = passPlaces;
 
     private double money;
 
@@ -104,6 +104,8 @@ public class SimulatorModel extends BaseModel {
             e.printStackTrace();
         }
         handleEntrance();
+        garagemodel.updatePassPlaces(amount);
+        this.passPlaces = amount;
     }
 
     private void payExpanses(){
@@ -167,6 +169,10 @@ public class SimulatorModel extends BaseModel {
         return garagemodel.getNumberOfRows() * garagemodel.getNumberOfFloors() * garagemodel.getNumberOfPlaces();
     }
 
+    public int getPassPlaces(){
+        return passPlaces;
+    }
+
     public int getNumberOfAdHocCars(){
         return garagemodel.getNumberOfAdHocCars();
     }
@@ -187,8 +193,8 @@ public class SimulatorModel extends BaseModel {
         return angryCustomers;
     }
 
-    public int getLostRevenue() {
-        return lostRevenue;
+    public void setPassSpaces(int amount){
+        this.amount = amount;
     }
 
     private void advanceTime(){
@@ -269,15 +275,6 @@ public class SimulatorModel extends BaseModel {
             if(car.getQueueTime() > car.getMaxWaitTime()){
                 removeCars.add(car);
                 angryCustomers++;
-                if(car.getTypeId() == 2){
-                    lostRevenue += (1.5 * 2.5);
-                }
-                else if (car.getTypeId() == 1){
-                    lostRevenue += (2.5 * 1.25);
-                }
-                else{
-                    lostRevenue += 2.5;
-                }
             } else {
                 car.tickQueueTime();
             }
@@ -287,7 +284,6 @@ public class SimulatorModel extends BaseModel {
             queue.removeSpecificCar(car);
         }
     }
-
 
         private void carsReadyToLeave(){
             // Add leaving cars to the payment queue.

@@ -13,15 +13,15 @@ public class CarQueue {
         return queue.poll();
     }
 
-    public void removeSpecificCar(Car car) {
+    public void removeSpecificCar(Car car){
         queue.remove(car);
     }
 
-    public int carsInQueue() {
+    public int carsInQueue(){
         return queue.size();
     }
 
-    public Iterator iterator() {
+    public Iterator iterator(){
         return queue.iterator();
     }
 }

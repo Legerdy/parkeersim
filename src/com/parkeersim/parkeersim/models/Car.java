@@ -36,7 +36,7 @@ public abstract class Car {
         this.stayTime = minutesLeft;
     }
 
-    public void setWaitTime(int time){
+    public void setMaxWaitTime(int time){
         this.maxWaitTime = time;
     }
 
