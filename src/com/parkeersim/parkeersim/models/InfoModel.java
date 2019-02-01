@@ -31,12 +31,13 @@ public class InfoModel extends BaseModel {
                     String week = "Week: " + model.getWeek();
                     String balance = "Balance: €" + balanceRound/100;
                     String expanses = "Expanses: €" + model.getExpanses();
-                    String taxes = "Total taxes: " + (int)model.getTotalTaxes();
-                    String revenue = "Total revenue: " + model.getRevenue();
-                    String weeklyIncome = "Income of last week: " + model.getTempWeeklyIncome();
+                    String taxes = "Total taxes: €" + (int)model.getTotalTaxes();
+                    String revenue = "Total revenue: €" + model.getRevenue();
+                    String weeklyIncome = "Income of last week: €" + model.getTempWeeklyIncome();
                     String parkingPassSpots = "Free parking pass spots : " + model.getOpenParkingPassSpots();
                     String parkingSpots = "Free normal parking spots : " + model.getOpenSpots();
-                    String simulationSpeed = "Simulation speed : " + model.getTickPause();
+                    String simulationSpeed = "Simulation speed : " + (100 - model.getTickPause());
+                    String angryCustomers = "Amount of angry customers : " + model.getAngryCustomers();
 
                     view.minute(minute);
                     view.hour(hour);
@@ -50,6 +51,7 @@ public class InfoModel extends BaseModel {
                     view.parkingPassSpots(parkingPassSpots);
                     view.parkingSpots(parkingSpots);
                     view.simulationSpeed(simulationSpeed);
+                    view.angryCustomers(angryCustomers);
 
                     //Infoview graph
                     float redangle = ((float)model.getNumberOfAdHocCars()) / model.getAllSpots() * 360;

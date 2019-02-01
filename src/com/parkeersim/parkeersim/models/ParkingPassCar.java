@@ -13,7 +13,7 @@ public class ParkingPassCar extends Car {
         this.setWaitTime(waitTime);
         this.setMinutesLeft(stayMinutes);
         this.setHasToPay(true);
-        this.setTypeid(1);
+        this.setTypeId(1);
     }
     
     public Color getColor(){

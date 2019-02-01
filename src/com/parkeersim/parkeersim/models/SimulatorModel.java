@@ -2,6 +2,8 @@ package com.parkeersim.parkeersim.models;
 
 import com.parkeersim.mvc.BaseModel;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 public class SimulatorModel extends BaseModel {
@@ -15,16 +17,15 @@ public class SimulatorModel extends BaseModel {
 
     private int workers = 10;
     private int salary = 15;
-    private int energycost = 2;
-
+    private static final int energycost = 2;
     private int expanses = 0;
-    private double taxes = 0.42;
+    private static final double taxes = 0.42;
     private double weeklyIncome = 0;
     private double tempWeeklyIncome = 0;
     private double totalTaxes = 0;
     private double revenue = 0;
 
-
+    private int angryCustomers = 0;
 
     private CarQueue entranceCarQueue;
     private CarQueue entrancePassQueue;
@@ -41,10 +42,8 @@ public class SimulatorModel extends BaseModel {
 
     private double money;
 
-    //todo: als auto's te lang in de queue staan kunnen ze weg gaan
-
     int weekDayArrivals= 110; // average number of arriving cars per hour
-    int weekendArrivals = 220; // average number of arriving cars per hour
+    int weekendArrivals = 262; // average number of arriving cars per hour
     int weekDayPassArrivals= 60; // average number of arriving cars per hour
     int weekendPassArrivals = 75; // average number of arriving cars per hour
     int weekDayReservationArrivals = 30;
@@ -73,7 +72,6 @@ public class SimulatorModel extends BaseModel {
                         e.printStackTrace();
                     }
                 } else {
-                    //System.out.println(entranceCarQueue.carsInQueue());
                     tick();
                 }
             }
@@ -98,8 +96,6 @@ public class SimulatorModel extends BaseModel {
         advanceTime();
         handleExit();
         updateViews();
-
-        // Pause.
         try {
             Thread.sleep(tickPause);
         } catch (InterruptedException e) {
@@ -117,9 +113,6 @@ public class SimulatorModel extends BaseModel {
         totalTaxes += tax;
         revenue += (tempWeeklyIncome - expenses - (int)tax);
         money = money - expenses - tax;
-
-
-
     }
 
     public int getWeek() {
@@ -188,33 +181,29 @@ public class SimulatorModel extends BaseModel {
         return getOpenParkingPassSpots() + getOpenSpots();
     }
 
+    public int getAngryCustomers(){
+        return angryCustomers;
+    }
+
     private void advanceTime(){
         // Advance the time by one minute.
         minute++;
         while (minute > 59) {
             minute -= 60;
             hour++;
-
-
-
         }
         while (hour > 23) {
             hour -= 24;
             day++;
-
-
         }
         while (day > 6) {
             day -= 7;
             week++;
-
             if(money >= 500 && week > 0 && day == 0) {
                 payExpanses();
                 weeklyIncome = 0;
             }
-
         }
-
     }
 
     private void handleEntrance(){
@@ -255,19 +244,34 @@ public class SimulatorModel extends BaseModel {
     private void carsEntering(CarQueue queue){
         int i=0;
         // Remove car from the front of the queue and assign to a parking space.
-        while (queue.carsInQueue()>0 && i<enterSpeed)
-        {
+        while (queue.carsInQueue()>0 && i<enterSpeed) {
             Car car = queue.removeCar();
-            if(car.getTypeid() == 1 && garagemodel.getNumberOfOpenParkingPassSpots()>0){
+            if(car.getTypeId() == 1 && garagemodel.getNumberOfOpenParkingPassSpots()>0){
                 Location freeLocation = garagemodel.getFirstFreeParkingPassLocation();
                 garagemodel.setCarAt(freeLocation, car);
             } else if (garagemodel.getNumberOfOpenSpots()>0){
                 Location freeLocation = garagemodel.getFirstFreeLocation();
                 garagemodel.setCarAt(freeLocation, car);
             }
-                    i++;
-                }
+            i++;
         }
+
+        Iterator cars = queue.iterator();
+        ArrayList<Car> removeCars = new ArrayList<>();
+        while(cars.hasNext()){
+            Car car = (Car)cars.next();
+            if(car.getQueueTime() > car.getMaxWaitTime()){
+                removeCars.add(car);
+                angryCustomers++;
+            } else {
+                car.tickQueueTime();
+            }
+        }
+
+        for(Car car : removeCars){
+            queue.removeSpecificCar(car);
+        }
+    }
 
         private void carsReadyToLeave(){
             // Add leaving cars to the payment queue.
@@ -291,11 +295,11 @@ public class SimulatorModel extends BaseModel {
                 Car car = paymentCarQueue.removeCar();
                 double priceRounded = Math.round(car.getStayTime() * 0.025 * 100);
                 double price = priceRounded/100;
-                if(car.getTypeid() == 2){
+                if(car.getTypeId() == 2){
                     money += price * 1.5;
                     weeklyIncome += (price * 1.5);
                 }
-                else if(car.getTypeid() ==1){
+                else if(car.getTypeId() == 1){
                     money += price * 1.25;
                     weeklyIncome += (price * 1.25);
                 }
@@ -365,12 +369,12 @@ public class SimulatorModel extends BaseModel {
                         entranceCarQueue.addCar(new AdHocCar());
                 }
                 break;
-            case PASS:
+                case PASS:
                 for (int i = 0; i < numberOfCars; i++) {
                     entrancePassQueue.addCar(new ParkingPassCar());
                 }
                 break;
-            case RES:
+                case RES:
                 for (int i = 0; i < numberOfCars; i++) {
                     entranceReservationQueue.addCar(new ReservationCar());
                 }
