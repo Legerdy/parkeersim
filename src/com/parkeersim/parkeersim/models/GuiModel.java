@@ -2,6 +2,11 @@ package com.parkeersim.parkeersim.models;
 
 import com.parkeersim.mvc.BaseModel;
 
+/**
+ * @author Joost Blaauwwiekel, Daan Alssema, Dylan hasperhoven, Joris Rijs
+ * @version 4.19
+ */
+
 public class GuiModel extends BaseModel {
     private boolean simPaused;
     private boolean infoVisible;

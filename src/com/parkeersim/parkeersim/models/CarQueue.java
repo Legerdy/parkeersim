@@ -3,7 +3,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
- * This class makes a LinkedList of caars which are in the queue for the parking garage.
+ * This class makes a LinkedList of cars which are in the queue for the parking garage.
  *
  * @author Joost Blaauwwiekel, Daan Alssema, Dylan hasperhoven, Joris Rijs
  * @version 4.19

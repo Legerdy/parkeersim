@@ -55,6 +55,10 @@ public class SimulatorModel extends BaseModel {
     int paymentSpeed = 7; // number of cars that can pay per minute
     int exitSpeed = 5; // number of cars that can leave per minute
 
+    /**
+     * This is the constructor of the simulator model, which makes the multiple different carqueues and makes the garagemodel
+     */
+
     public SimulatorModel(GarageModel garagemodel) {
         entranceCarQueue = new CarQueue();
         entrancePassQueue = new CarQueue();
@@ -63,6 +67,11 @@ public class SimulatorModel extends BaseModel {
         exitCarQueue = new CarQueue();
         this.garagemodel = garagemodel;
     }
+
+    /**
+     * The method run, starts the simulator and if it is paused it will restart the simulation
+     *
+     */
 
     public void run() {
         Thread thread = new Thread(() -> {
@@ -93,6 +102,9 @@ public class SimulatorModel extends BaseModel {
         return tickPause;
     }
 
+    /**
+     * The method tick will advance the time
+     */
 
     private void tick() {
         advanceTime();
