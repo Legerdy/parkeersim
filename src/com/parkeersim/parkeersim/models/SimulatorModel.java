@@ -26,6 +26,7 @@ public class SimulatorModel extends BaseModel {
     private double revenue = 0;
 
     private int angryCustomers = 0;
+    private int lostRevenue = 0;
 
     private CarQueue entranceCarQueue;
     private CarQueue entrancePassQueue;
@@ -193,6 +194,10 @@ public class SimulatorModel extends BaseModel {
         return angryCustomers;
     }
 
+    public int getLostRevenue() {
+        return lostRevenue;
+    }
+
     public void setPassSpaces(int amount){
         this.amount = amount;
     }
@@ -275,6 +280,15 @@ public class SimulatorModel extends BaseModel {
             if(car.getQueueTime() > car.getMaxWaitTime()){
                 removeCars.add(car);
                 angryCustomers++;
+                if(car.getTypeId() == 2){
+                    lostRevenue += (1.5 * 2.5);
+                }
+                else if (car.getTypeId() == 1){
+                    lostRevenue += (2.5 * 1.25);
+                }
+                else{
+                    lostRevenue += 2.5;
+                }
             } else {
                 car.tickQueueTime();
             }

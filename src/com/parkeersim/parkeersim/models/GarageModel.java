@@ -166,7 +166,6 @@ public class GarageModel extends BaseModel {
 
     public Location getFirstFreeLocation() {
         Map<Integer, Location> locations = getLocations();
-        System.out.println(numberOfOpenParkingPassSpots + " : " + numberOfOpenSpots);
 
         for(Map.Entry<Integer, Location> location : locations.entrySet()){
             if(getCarAt(location.getValue()) == null && location.getKey()>passPlaces){
@@ -236,7 +235,6 @@ public class GarageModel extends BaseModel {
             numberOfOpenSpots += difference;
             numberOfOpenParkingPassSpots -= passDifference;
             passPlaces = amount;
-            System.out.println(passDifference + " : " + difference + " : " + numberOfOpenParkingPassSpots + " : " + numberOfOpenSpots);
         }
     }
 
