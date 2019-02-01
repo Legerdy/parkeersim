@@ -11,7 +11,7 @@ public class SimulatorModel extends BaseModel {
     private static final String PASS = "2";
     private static final String RES = "3";
 
-    private boolean isPaused = true;
+    private boolean isPaused = false;
 
     private GarageModel garagemodel;
 
@@ -26,6 +26,7 @@ public class SimulatorModel extends BaseModel {
     private double revenue = 0;
 
     private int angryCustomers = 0;
+    private int lostRevenue = 0;
 
     private CarQueue entranceCarQueue;
     private CarQueue entrancePassQueue;
@@ -39,7 +40,6 @@ public class SimulatorModel extends BaseModel {
     private int week = 0;
 
     private int tickPause = 100;
-    private int passPlaces = 50;
 
     private double money;
 
@@ -166,10 +166,6 @@ public class SimulatorModel extends BaseModel {
         return garagemodel.getNumberOfRows() * garagemodel.getNumberOfFloors() * garagemodel.getNumberOfPlaces();
     }
 
-    public int getPassPlaces(){
-        return passPlaces;
-    }
-
     public int getNumberOfAdHocCars(){
         return garagemodel.getNumberOfAdHocCars();
     }
@@ -190,9 +186,8 @@ public class SimulatorModel extends BaseModel {
         return angryCustomers;
     }
 
-    public void setPassSpaces(int amount){
-        this.passPlaces = amount;
-        garagemodel.updatePassPlaces(amount);
+    public int getLostRevenue() {
+        return lostRevenue;
     }
 
     private void advanceTime(){
@@ -273,6 +268,15 @@ public class SimulatorModel extends BaseModel {
             if(car.getQueueTime() > car.getMaxWaitTime()){
                 removeCars.add(car);
                 angryCustomers++;
+                if(car.getTypeId() == 2){
+                    lostRevenue += (1.5 * 2.5);
+                }
+                else if (car.getTypeId() == 1){
+                    lostRevenue += (2.5 * 1.25);
+                }
+                else{
+                    lostRevenue += 2.5;
+                }
             } else {
                 car.tickQueueTime();
             }
@@ -282,6 +286,7 @@ public class SimulatorModel extends BaseModel {
             queue.removeSpecificCar(car);
         }
     }
+
 
         private void carsReadyToLeave(){
             // Add leaving cars to the payment queue.
