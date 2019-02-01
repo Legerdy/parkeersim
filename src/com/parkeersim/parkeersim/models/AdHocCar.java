@@ -5,7 +5,10 @@ import java.awt.*;
 
 public class AdHocCar extends Car {
 	private static final Color COLOR=Color.red;
-	
+
+    /**
+     * ...
+     */
     public AdHocCar() {
     	Random random = new Random();
     	int stayMinutes = (int) (15 + random.nextFloat() * 3 * 60);
@@ -15,7 +18,12 @@ public class AdHocCar extends Car {
         this.setHasToPay(true);
         this.setTypeId(0);
     }
-    
+
+    /**
+     * method that returns the color of the car
+     *
+     * @return color
+     */
     public Color getColor(){
     	return COLOR;
     }
