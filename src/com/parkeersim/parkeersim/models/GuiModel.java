@@ -9,11 +9,20 @@ public class GuiModel extends BaseModel {
     private SimulatorModel simmodel;
     private InfoModel infomodel;
 
+    /**
+     * constructor of the class GuiModel
+     *
+     * @param simmodel
+     * @param infomodel
+     */
     public GuiModel(SimulatorModel simmodel, InfoModel infomodel){
         this.simmodel = simmodel;
         this.infomodel = infomodel;
     }
 
+    /**
+     * method that pauses the simulator
+     */
     public void pauseSim(){
         if(simPaused){
             simPaused = false;
@@ -26,6 +35,9 @@ public class GuiModel extends BaseModel {
         simmodel.notifyView();
     }
 
+    /**
+     * ...
+     */
     public void addTickPause(){
         if(simmodel.getTickPause() < 5){
             simmodel.setTickPause(simmodel.getTickPause() + 1);
@@ -34,6 +46,9 @@ public class GuiModel extends BaseModel {
         }
     }
 
+    /**
+     * ...
+     */
     public void subtractTickPause(){
         if(simmodel.getTickPause() > 6){
             simmodel.setTickPause(simmodel.getTickPause() - 5);
@@ -42,6 +57,9 @@ public class GuiModel extends BaseModel {
         }
     }
 
+    /**
+     * method that creates a modal window with additional information about the processes in the garage
+     */
     public void showInfo(){
         if(infoVisible){
             infoVisible = false;
