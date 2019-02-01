@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+//this is a comment
 public class SimulatorModel extends BaseModel {
     private static final String AD_HOC = "1";
     private static final String PASS = "2";
